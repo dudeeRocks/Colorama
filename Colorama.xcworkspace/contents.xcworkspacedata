@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:ColoramaUIKit/ColoramaUIKit.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ColoramaSwiftUI/ColoramaSwiftUI.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SwiftUIAlternativeToDiffableDataSource/SwiftUIAlternativeToDiffableDataSource.xcodeproj">
+   </FileRef>
+</Workspace>
