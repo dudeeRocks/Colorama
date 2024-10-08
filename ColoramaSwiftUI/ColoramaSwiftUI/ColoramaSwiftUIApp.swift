@@ -11,7 +11,7 @@ import SwiftUI
 struct ColoramaSwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
         }
     }
 }
