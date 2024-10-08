@@ -7,7 +7,4 @@
    <FileRef
       location = "group:ColoramaSwiftUI/ColoramaSwiftUI.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:SwiftUIAlternativeToDiffableDataSource/SwiftUIAlternativeToDiffableDataSource.xcodeproj">
-   </FileRef>
 </Workspace>
