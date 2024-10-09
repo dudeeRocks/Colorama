@@ -10,7 +10,7 @@ struct ColorDetailsView: View {
         VStack {
             RoundedRectangle(cornerRadius: 10)
                 .fill(color.color)
-                .frame(width: .infinity, height: (380))
+                .frame(height: 380)
             Text(color.name)
                 .font(.largeTitle)
                 .bold()

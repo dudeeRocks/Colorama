@@ -11,7 +11,7 @@ struct ColorRowView: View {
             RoundedRectangle(cornerRadius: 10)
                 .fill(color.color)
                 .stroke(.separator, lineWidth: 1)
-                .frame(width: 30, height: 30)
+                .frame(width: 40, height: 40)
             Text(color.name)
         }
     }
