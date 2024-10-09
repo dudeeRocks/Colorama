@@ -21,14 +21,33 @@ struct ColorsListView: View {
                     }
                 }
                 
+                
                 Section(header: Text("Custom Colors")) {
-                    ForEach(model.customColors) { color in
-                        NavigationLink {
-                            ColorDetailsView(color: Binding(get: { color }, set: { _ in }))
-                                .navigationTitle(color.name)
-                                .navigationBarTitleDisplayMode(.inline)
-                        } label: {
-                            ColorRowView(color: color)
+                    if model.customColors.isEmpty {
+                        VStack(alignment: .center, spacing: 10) {
+                            Text("No custom colors yet.")
+                                .font(.headline)
+                                .padding()
+                            Button {
+                                model.customColors.append(.init(color: .red, name: "New color"))
+                            } label: {
+                                HStack {
+                                    Image(systemName: "plus")
+                                    Text("Add new color")
+                                }
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
+                        .padding(.bottom, 20)
+                    } else {
+                        ForEach(model.customColors) { color in
+                            NavigationLink {
+                                ColorDetailsView(color: Binding(get: { color }, set: { _ in }))
+                                    .navigationTitle(color.name)
+                                    .navigationBarTitleDisplayMode(.inline)
+                            } label: {
+                                ColorRowView(color: color)
+                            }
                         }
                     }
                 }
