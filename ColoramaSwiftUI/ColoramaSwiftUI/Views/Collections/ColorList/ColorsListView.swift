@@ -31,6 +31,11 @@ struct ColorsListView: View {
                             } label: {
                                 ColorRowView(color: color.wrappedValue)
                             }
+                            .swipeActions(edge: .trailing, allowsFullSwipe: true, content: {
+                                Button("Delete", systemImage: "trash", role: .destructive) {
+                                    model.removeColor(color.wrappedValue)
+                                }
+                            })
                         }
                     }
                 }
