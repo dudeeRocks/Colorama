@@ -29,7 +29,7 @@ struct ColorsGridView: View {
                         }
                     }
                 }
-                .padding(.horizontal, 20)
+                .padding([.horizontal, .bottom], 16)
                 
                 Text("Custom Colors".uppercased())
                     .gridSectionHeader()
@@ -40,7 +40,7 @@ struct ColorsGridView: View {
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(.background)
                         }
-                        .padding(.horizontal, 20)
+                        .padding([.horizontal, .bottom], 16)
                 } else {
                     LazyVGrid(columns: columns, spacing: 20) {
                         ForEach($model.customColors) { color in
@@ -52,7 +52,7 @@ struct ColorsGridView: View {
                             }
                         }
                     }
-                    .padding(.horizontal, 20)
+                    .padding([.horizontal, .bottom], 16)
                 }
             }
             .navigationTitle("Colors")
@@ -64,11 +64,11 @@ struct ColorsGridView: View {
 extension Text {
     func gridSectionHeader() -> some View {
         self
-            .font(.caption)
+            .font(.footnote)
             .foregroundStyle(.secondary)
             .multilineTextAlignment(.leading)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.leading, 20)
+            .padding(.leading, 40)
             .padding(.top, 20)
     }
 }
