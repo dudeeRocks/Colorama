@@ -17,8 +17,7 @@ struct ColorsGridView: View {
                 LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(model.systemColors) { color in
                         NavigationLink {
-                            ColorDetailsView(color: Binding(get: { color }, set: { _ in }))
-                                .setNavigationTitle(to: color.name)
+                            ColorView(colorItem: Binding(get: { color }, set: { _ in }), isSystemColor: true)
                         } label: {
                             ColorCellView(color: color)
                         }
@@ -35,13 +34,12 @@ struct ColorsGridView: View {
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(.background)
                         }
-                        .padding([.horizontal, .bottom], 16)
+                        .padding([.horizontal, .bottom], 20)
                 } else {
                     LazyVGrid(columns: columns, spacing: 20) {
                         ForEach($model.customColors) { color in
                             NavigationLink {
-                                ColorDetailsView(color: color)
-                                    .setNavigationTitle(to: color.name.wrappedValue)
+                                ColorView(colorItem: color)
                             } label: {
                                 ColorCellView(color: color.wrappedValue)
                             }

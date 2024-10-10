@@ -1,18 +1,21 @@
-//
-//  ColorEditView.swift
-//  ColoramaSwiftUI
-//
-//  Created by David Katsman on 10/10/2024.
-//
+// ABstract: view for editing colors
 
 import SwiftUI
 
 struct ColorEditView: View {
+    
+    @Binding var colorItem: ColorItem
+    @Binding var newName: String
+    @Binding var newColor: Color
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Form {
+            Section(header: Text("Color")) {
+                ColorPicker("Color Value", selection: $newColor, supportsOpacity: false)
+            }
+            Section(header: Text("Name")) {
+                TextField("Name", text: $newName)
+            }
+        }
     }
-}
-
-#Preview {
-    ColorEditView()
 }

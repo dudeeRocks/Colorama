@@ -12,8 +12,7 @@ struct ColorsListView: View {
                 Section(header: Text("System Colors")) {
                     ForEach(model.systemColors) { color in
                         NavigationLink {
-                            ColorDetailsView(color: Binding(get: { color }, set: { _ in }))
-                                .setNavigationTitle(to: color.name)
+                            ColorView(colorItem: Binding(get: { color }, set: { _ in }), isSystemColor: true)
                         } label: {
                             ColorRowView(color: color)
                         }
@@ -25,12 +24,11 @@ struct ColorsListView: View {
                     if model.customColors.isEmpty {
                         EmptyStateView()
                     } else {
-                        ForEach(model.customColors) { color in
+                        ForEach($model.customColors) { color in
                             NavigationLink {
-                                ColorDetailsView(color: Binding(get: { color }, set: { _ in }))
-                                    .setNavigationTitle(to: color.name)
+                                ColorView(colorItem: color)
                             } label: {
-                                ColorRowView(color: color)
+                                ColorRowView(color: color.wrappedValue)
                             }
                         }
                     }

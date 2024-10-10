@@ -13,4 +13,8 @@ extension ColorItem {
         let model = Model()
         return model.systemColors.randomElement()!
     }
+    
+    static var newColor: Self {
+        return ColorItem(color: .red, name: "New Color")
+    }
 }

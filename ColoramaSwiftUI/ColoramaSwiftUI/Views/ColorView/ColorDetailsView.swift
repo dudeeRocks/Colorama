@@ -4,7 +4,7 @@ import SwiftUI
 
 struct ColorDetailsView: View {
     
-    @Binding var color: ColorItem
+    @Binding var colorItem: ColorItem
     
     @State private var isFullscreen: Bool = false
     @Namespace private var namespace
@@ -13,13 +13,13 @@ struct ColorDetailsView: View {
         if isFullscreen {
             ZStack {
                 RoundedRectangle(cornerRadius: 0)
-                    .fill(color.color)
-                    .matchedGeometryEffect(id: color.id, in: namespace, properties: .frame, anchor: .top, isSource: false)
-                Text(color.name)
+                    .fill(colorItem.color)
+                    .matchedGeometryEffect(id: colorItem.id, in: namespace, properties: .frame, anchor: .top, isSource: false)
+                Text(colorItem.name)
                     .font(.largeTitle)
                     .foregroundStyle(.background)
                     .bold()
-                    .matchedGeometryEffect(id: color.name, in: namespace, properties: .position, anchor: .center, isSource: false)
+                    .matchedGeometryEffect(id: colorItem.name, in: namespace, properties: .position, anchor: .center, isSource: false)
             }
             .onTapGesture {
                 withAnimation(.easeInOut) {
@@ -29,31 +29,21 @@ struct ColorDetailsView: View {
         } else {
             VStack {
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(color.color)
+                    .fill(colorItem.color)
                     .frame(height: 380)
-                    .matchedGeometryEffect(id: color.id, in: namespace, properties: .frame, anchor: .top, isSource: true)
+                    .matchedGeometryEffect(id: colorItem.id, in: namespace, properties: .frame, anchor: .top, isSource: true)
                     .onTapGesture {
                         withAnimation(.easeInOut) {
                             isFullscreen = true
                         }
                     }
-                Text(color.name)
+                Text(colorItem.name)
                     .font(.largeTitle)
                     .bold()
-                    .matchedGeometryEffect(id: color.name, in: namespace, properties: .position, anchor: .center, isSource: true)
+                    .matchedGeometryEffect(id: colorItem.name, in: namespace, properties: .position, anchor: .center, isSource: true)
                 Spacer()
             }
             .padding()
         }
-    }
-}
-
-extension ColorDetailsView {
-    typealias ColorName = String
-    
-    func setNavigationTitle(to colorName: ColorName) -> some View {
-        self
-            .navigationTitle(colorName)
-            .navigationBarTitleDisplayMode(.inline)
     }
 }
