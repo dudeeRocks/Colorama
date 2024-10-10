@@ -5,7 +5,7 @@ import SwiftUI
 struct EmptyStateView: View {
     
     @EnvironmentObject var model: Model
-    @State var isPresented: Bool = false
+    @Binding var isPresented: Bool
     
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
@@ -23,18 +23,5 @@ struct EmptyStateView: View {
             .frame(maxWidth: .infinity)
             .padding(.bottom, 20)
         }
-        .sheet(isPresented: $isPresented) {
-            NavigationStack {
-                ColorView(
-                    colorItem: .init(get: { .newColor }, set: { _ in }),
-                    isNewColor: true,
-                    onCancel: { isPresented = false }
-                )
-            }
-        }
     }
-}
-
-#Preview {
-    EmptyStateView()
 }

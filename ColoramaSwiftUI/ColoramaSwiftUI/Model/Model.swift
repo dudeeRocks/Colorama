@@ -26,24 +26,32 @@ class Model: ObservableObject {
     
     func addColor(_ color: ColorItem) {
         customColors.append(color)
-        UserDefaults.standard.set(customColors, forKey: customColorsKey)
+        saveCustomColors()
     }
     
     func removeColor(_ color: ColorItem) {
         customColors.removeAll(where: { $0.id == color.id })
-        UserDefaults.standard.set(customColors, forKey: customColorsKey)
+        saveCustomColors()
     }
     
     func updateColor(_ color: ColorItem) {
         if let index = customColors.firstIndex(where: { $0.id == color.id }) {
             customColors[index] = color
-            UserDefaults.standard.set(customColors, forKey: customColorsKey)
+            saveCustomColors()
+        }
+    }
+    
+    private func saveCustomColors() {
+        if let encodedColors = try? JSONEncoder().encode(customColors) {
+            UserDefaults.standard.set(encodedColors, forKey: customColorsKey)
         }
     }
     
     private func loadCustomColors() {
-        let storedColors = UserDefaults.standard.array(forKey: customColorsKey) as? [ColorItem] ?? []
-        customColors = storedColors
+        if let saveData = UserDefaults.standard.data(forKey: customColorsKey),
+           let decodedColors = try? JSONDecoder().decode([ColorItem].self, from: saveData) {
+            customColors = decodedColors
+        }
     }
     
     // MARK: - Initialization

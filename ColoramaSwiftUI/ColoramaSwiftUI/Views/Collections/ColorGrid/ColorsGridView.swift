@@ -6,6 +6,8 @@ struct ColorsGridView: View {
     
     @EnvironmentObject var model: Model
     
+    @State var isSheetPresented: Bool = false
+    
     private let columns: [GridItem] = .init(repeating: GridItem(.adaptive(minimum: 80, maximum: 120), spacing: 20), count: 3)
     
     var body: some View {
@@ -29,7 +31,7 @@ struct ColorsGridView: View {
                     .gridSectionHeader()
                 
                 if model.customColors.isEmpty {
-                    EmptyStateView()
+                    EmptyStateView(isPresented: $isSheetPresented)
                         .background {
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(.background)
@@ -48,7 +50,7 @@ struct ColorsGridView: View {
                     .padding([.horizontal, .bottom], 16)
                 }
             }
-            .navigationTitle("Colors")
+            .colorsNavigationTitle(isSheetPresented: $isSheetPresented)
             .background(.gray.opacity(0.15))
         }
     }

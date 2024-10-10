@@ -3,10 +3,10 @@
 import SwiftUI
 
 struct ColorEditView: View {
-    
-    @Binding var colorItem: ColorItem
     @Binding var newName: String
     @Binding var newColor: Color
+    let isNewColor: Bool
+    let onDelete: () -> Void
     
     var body: some View {
         Form {
@@ -15,6 +15,13 @@ struct ColorEditView: View {
             }
             Section(header: Text("Name")) {
                 TextField("Name", text: $newName)
+            }
+            if !isNewColor {
+                Section {
+                    Button("Delete Color", role: .destructive) {
+                        onDelete()
+                    }
+                }
             }
         }
     }

@@ -5,6 +5,7 @@ import SwiftUI
 struct ColorsListView: View {
     
     @EnvironmentObject var model: Model
+    @State var isSheetPresented: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -22,7 +23,7 @@ struct ColorsListView: View {
                 
                 Section(header: Text("Custom Colors")) {
                     if model.customColors.isEmpty {
-                        EmptyStateView()
+                        EmptyStateView(isPresented: $isSheetPresented)
                     } else {
                         ForEach($model.customColors) { color in
                             NavigationLink {
@@ -34,12 +35,7 @@ struct ColorsListView: View {
                     }
                 }
             }
-            .navigationTitle("Colors")
+            .colorsNavigationTitle(isSheetPresented: $isSheetPresented)
         }
     }
-}
-
-#Preview {
-    ColorsListView()
-        .environmentObject(Model())
 }

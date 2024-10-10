@@ -3,11 +3,12 @@
 import SwiftUI
 
 struct ColorView: View {
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var model: Model
     @Binding var colorItem: ColorItem
     var isNewColor: Bool = false
     var isSystemColor: Bool = false
-    var onCancel: () -> Void = { }
+    var onDismiss: () -> Void = { }
     
     @State private var isEditing: Bool = false
     @State private var newName: String = ""
@@ -26,7 +27,15 @@ struct ColorView: View {
     var body: some View {
         Group {
             if isEditing || isNewColor {
-                ColorEditView(colorItem: $colorItem, newName: $newName, newColor: $newColor)
+                ColorEditView(
+                    newName: $newName,
+                    newColor: $newColor,
+                    isNewColor: isNewColor,
+                    onDelete: {
+                        model.removeColor(colorItem)
+                        dismiss()
+                    }
+                )
             } else {
                 ColorDetailsView(colorItem: $colorItem)
                     .onAppear {
@@ -43,7 +52,8 @@ struct ColorView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         if isNewColor {
-                            model.addColor(colorItem)
+                            model.addColor(ColorItem(color: newColor, name: newName))
+                            onDismiss()
                         } else {
                             colorItem.name = newName
                             colorItem.color = newColor
@@ -57,7 +67,7 @@ struct ColorView: View {
                 }
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        onCancel()
+                        onDismiss()
                         withAnimation() {
                             isEditing = false
                         }
