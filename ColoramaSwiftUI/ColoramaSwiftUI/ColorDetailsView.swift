@@ -47,3 +47,13 @@ struct ColorDetailsView: View {
         }
     }
 }
+
+extension ColorDetailsView {
+    typealias ColorName = String
+    
+    func setNavigationTitle(to colorName: ColorName) -> some View {
+        self
+            .navigationTitle(colorName)
+            .navigationBarTitleDisplayMode(.inline)
+    }
+}

@@ -16,7 +16,6 @@ class Model: ObservableObject {
         ColorItem(color: .purple, name: "Purple"),
         ColorItem(color: .pink, name: "Pink"),
         ColorItem(color: .brown, name: "Brown"),
-        ColorItem(color: .gray, name: "Gray"),
         ColorItem(color: .primary, name: "Primary"),
         ColorItem(color: .secondary, name: "Secondary")
     ]

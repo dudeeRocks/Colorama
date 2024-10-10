@@ -13,8 +13,7 @@ struct ColorsListView: View {
                     ForEach(model.systemColors) { color in
                         NavigationLink {
                             ColorDetailsView(color: Binding(get: { color }, set: { _ in }))
-                                .navigationTitle(color.name)
-                                .navigationBarTitleDisplayMode(.inline)
+                                .setNavigationTitle(to: color.name)
                         } label: {
                             ColorRowView(color: color)
                         }
@@ -24,27 +23,12 @@ struct ColorsListView: View {
                 
                 Section(header: Text("Custom Colors")) {
                     if model.customColors.isEmpty {
-                        VStack(alignment: .center, spacing: 10) {
-                            Text("No custom colors yet.")
-                                .font(.headline)
-                                .padding()
-                            Button {
-                                model.customColors.append(.init(color: .red, name: "New color"))
-                            } label: {
-                                HStack {
-                                    Image(systemName: "plus")
-                                    Text("Add new color")
-                                }
-                            }
-                            .frame(maxWidth: .infinity)
-                        }
-                        .padding(.bottom, 20)
+                        EmptyStateView()
                     } else {
                         ForEach(model.customColors) { color in
                             NavigationLink {
                                 ColorDetailsView(color: Binding(get: { color }, set: { _ in }))
-                                    .navigationTitle(color.name)
-                                    .navigationBarTitleDisplayMode(.inline)
+                                    .setNavigationTitle(to: color.name)
                             } label: {
                                 ColorRowView(color: color)
                             }
