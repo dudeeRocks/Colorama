@@ -1,9 +1,4 @@
-//
-//  ColorsGridView.swift
-//  ColoramaSwiftUI
-//
-//  Created by David Katsman on 08/10/2024.
-//
+// Abstract: colors grid view
 
 import SwiftUI
 
