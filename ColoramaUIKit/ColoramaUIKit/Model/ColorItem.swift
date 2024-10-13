@@ -1,6 +1,6 @@
 // Abstract: Color item definition
 
-import SwiftUI
+import UIKit
 
 struct ColorItem: Identifiable {
     let id: UUID = UUID()
@@ -9,20 +9,20 @@ struct ColorItem: Identifiable {
     var green: Double
     var blue: Double
     
-    var color: Color {
+    var color: UIColor {
         get {
-            Color(red: red, green: green, blue: blue)
+            UIColor(red: red, green: green, blue: blue, alpha: 1)
         }
         set {
-            let colorComponents = UIColor(newValue).getComponents()
+            let colorComponents = newValue.getComponents()
             red = colorComponents[0]
             green = colorComponents[1]
             blue = colorComponents[2]
         }
     }
     
-    init (color: Color, name: String) {
-        let colorComponents = UIColor(color).getComponents()
+    init (color: UIColor, name: String) {
+        let colorComponents = color.getComponents()
         red = colorComponents[0]
         green = colorComponents[1]
         blue = colorComponents[2]
@@ -38,6 +38,14 @@ extension ColorItem {
     
     static var newColor: Self {
         return ColorItem(color: .red, name: "New Color")
+    }
+}
+
+extension ColorItem: Hashable {
+    /// Whenever you want to use your custom type in diffable data source you must conform to `Hashable` protocol.
+    /// This can beeasily achieved by generating `UUID` for your structure and use it to create has value.
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }
 

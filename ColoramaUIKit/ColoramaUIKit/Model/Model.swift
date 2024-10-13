@@ -1,10 +1,10 @@
 // Abstract: App's logic
 
-import SwiftUI
+import UIKit
 
-class Model: ObservableObject {
+class Model {
     
-    @Published var customColors: [ColorItem] = []
+    var customColors: [ColorItem] = []
     private let customColorsKey: String = "customColors"
     
     let systemColors: [ColorItem] = [
@@ -12,14 +12,12 @@ class Model: ObservableObject {
         ColorItem(color: .orange, name: "Orange"),
         ColorItem(color: .yellow, name: "Yellow"),
         ColorItem(color: .green, name: "Green"),
-        ColorItem(color: .teal, name: "Teal"),
         ColorItem(color: .cyan, name: "Cyan"),
         ColorItem(color: .blue, name: "Blue"),
         ColorItem(color: .purple, name: "Purple"),
-        ColorItem(color: .pink, name: "Pink"),
         ColorItem(color: .brown, name: "Brown"),
-        ColorItem(color: .primary, name: "Primary"),
-        ColorItem(color: .secondary, name: "Secondary")
+//        ColorItem(color: .label, name: "Primary Label Color"),
+//        ColorItem(color: .secondaryLabel, name: "Secondary Label Color")
     ]
     
     // MARK: - Methods

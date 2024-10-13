@@ -5,12 +5,17 @@ import UIKit
 class ColorsListViewController: UITableViewController {
     
     let model: Model
+    var dataSource: DataSource!
+    /// To generate cells you need a reuse id
+    let cellReuseIdentifier = "ColorCell"
     
     // MARK: - Initializers
     
     init(model: Model) {
         self.model = model
-        super.init(style: .grouped)
+        super.init(style: .insetGrouped)
+        self.setupDataSource()
+        self.applySnapshot()
     }
     
     required init?(coder: NSCoder) {
