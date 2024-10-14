@@ -29,7 +29,7 @@ extension ColorsListViewController {
         /// For more complex cases you can create your own configurations.
         /// You can also create a cell in the storyboard or programmatically.
         
-        tableView.register(ColorListCell.self, forCellReuseIdentifier: cellReuseIdentifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         
         /// I prefer declaring data sources as implicitly unwrapped optional at the top of my view controller, and set it up in a separate function on `init` or `viewDidLoad`.
         /// You create diffable data source for `UITableViewController` using dedicated `init(tableView:cellProvider:)` initializer that accepts the table view and a cell provider. Let's break those down.
@@ -40,9 +40,16 @@ extension ColorsListViewController {
         ///     `itemIdentifier` is the item you're defining the cell for. If you're using your custom type, this is it, and you get all the data for it to configure your cell.
         
         dataSource = DataSource(tableView: tableView) { tableView, indexPath, colorItem in
-            let cell = tableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier, for: indexPath) as! ColorListCell
-            cell.color = colorItem.color
-            cell.name = colorItem.name
+            let cell = tableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier, for: indexPath)
+            
+            /// There are several ways you can provide designs for your cells in a table
+            /// For simple cases it's sufficient to generate a default config and simply customize it.
+            /// You can also provide your custom views designed in storyboard and subclassing them to UITableViewCell
+            /// However, the best way to provide custom UI for table cell programmatically is to use the UIContentView with it's UIContentConfiguration.
+            var content = cell.colorItemConfiguration()
+            content.color = colorItem.color
+            content.name = colorItem.name
+            cell.contentConfiguration = content
             return cell
         }
     }
