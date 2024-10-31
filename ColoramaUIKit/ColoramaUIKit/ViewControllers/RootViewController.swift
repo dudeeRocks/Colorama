@@ -16,7 +16,7 @@ class RootViewController: UITabBarController {
         
         
         // MARK: List VC setup
-        let listViewController = ColorsListViewController(model: model)
+        let listViewController = ListViewController(model: model)
         let listNavigationController = UINavigationController(rootViewController: listViewController)
         listNavigationController.tabBarItem.image = UIImage(systemName: "list.bullet")
         listNavigationController.tabBarItem.title = "List"

@@ -41,6 +41,7 @@ struct ColorsListView: View {
                 }
             }
             .colorsNavigationTitle(isSheetPresented: $isSheetPresented)
+            .listStyle(.insetGrouped)
         }
     }
 }

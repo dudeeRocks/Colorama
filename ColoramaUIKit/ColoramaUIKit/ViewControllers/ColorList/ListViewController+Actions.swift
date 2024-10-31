@@ -2,7 +2,7 @@
 
 import UIKit
 
-extension ColorsListViewController {
+extension ListViewController {
     @objc func addColor() {
         let detailsVC = ColorDetailsViewController()
         

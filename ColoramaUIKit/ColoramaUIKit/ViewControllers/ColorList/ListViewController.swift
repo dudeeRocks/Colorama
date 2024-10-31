@@ -2,7 +2,7 @@
 
 import UIKit
 
-class ColorsListViewController: UITableViewController {
+class ListViewController: UITableViewController {
     
     let model: Model
     var dataSource: DataSource!

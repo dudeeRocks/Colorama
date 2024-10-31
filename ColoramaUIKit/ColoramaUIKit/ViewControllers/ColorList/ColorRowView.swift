@@ -6,8 +6,11 @@ import UIKit
 class ColorRowView: UIView, UIContentView {
     
     /// As part of `UIContentView` protocol conformance you must provide a `configuration` property. The type is required to be of `any UIContentConfiguration`, but this is where we'll be setting our config.
+    ///
+    /// To conform to `UIContentView` protocol your custom view is required to declare a `configuration` property of the `any UIContentConfiguration` type.
     var configuration: any UIContentConfiguration {
         /// This pattern of configuration when on didSet is a trick I learned in Apple's official tutorial.
+        /// This pattern ensures that the content of the view is updated anytime the configuration changes.
         didSet {
             configure(configuration)
         }
@@ -97,6 +100,7 @@ extension ColorRowView {
         /// The key here is to return the proper view and make sure the configuration is passed to it and applied.
         /// You could use this function to create your custom view ehre, and configure it, but I prefer offloading it to the view init.
         func makeContentView() -> any UIView & UIContentView {
+            // TODO: let's make this configuration return row or grid based on a flag to demonstrate the power of `makeContentView()` method
             ColorRowView(configuration: self)
         }
         
