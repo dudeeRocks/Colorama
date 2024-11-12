@@ -1,4 +1,4 @@
-// Abstract: a view of a cell in the colors grid
+// Abstract: a view for a cell in the colors grid
 
 import SwiftUI
 

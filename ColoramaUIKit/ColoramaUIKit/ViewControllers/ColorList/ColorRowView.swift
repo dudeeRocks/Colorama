@@ -67,7 +67,6 @@ class ColorRowView: UIView, UIContentView {
     /// This means that you need to make sure that the tallest view has the vertical anchors (top and bottom) set, while the views that touch the sides have their leading and trailing anchors set accordingly.
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            
             colorView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             colorView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             colorView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
