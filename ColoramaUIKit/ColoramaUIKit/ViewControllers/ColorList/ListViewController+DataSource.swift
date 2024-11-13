@@ -14,7 +14,7 @@ extension ListViewController {
     func applySnapshot() {
         var snapshot = Snapshot()
         
-        snapshot.appendSections([.systemColors, .customColors])
+        snapshot.appendSections([.customColors, .systemColors])
         for systemColor in model.systemColors {
             snapshot.appendItems([.system(colorItem: systemColor)], toSection: .systemColors)
         }
@@ -32,6 +32,7 @@ extension ListViewController {
     
     func delete(item: Item) {
         var updatedSnapshot = dataSource.snapshot()
+        model.removeColor(item.colorItem!)
         updatedSnapshot.deleteItems([item])
         dataSource.apply(updatedSnapshot, animatingDifferences: true)
     }

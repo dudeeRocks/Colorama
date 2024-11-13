@@ -5,13 +5,13 @@ import UIKit
 class ColorGridSectionHeaderView: UICollectionReusableView {
     var text: String? {
         didSet {
-            label.text = text
+            label.text = text?.uppercased()
         }
     }
     
     private let label: UILabel = {
         let label = UILabel()
-        label.font = .preferredFont(forTextStyle: .headline)
+        label.font = .preferredFont(forTextStyle: .footnote)
         label.textColor = .secondaryLabel
         return label
     }()
@@ -29,11 +29,12 @@ class ColorGridSectionHeaderView: UICollectionReusableView {
         addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
         
-        let spacing: CGFloat = 10
+        let spacing: CGFloat = 20
         NSLayoutConstraint.activate([
+            label.topAnchor.constraint(equalTo: topAnchor, constant: spacing),
             label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: spacing),
             label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -spacing),
-            label.centerYAnchor.constraint(equalTo: centerYAnchor)
+            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -(spacing / 4))
         ])
     }
 }

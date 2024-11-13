@@ -17,6 +17,17 @@ extension ColorsGridViewController {
         }
     }
     
+    func toggleDeleteButtonVisibility(_ deleteButton: ColorGridDeleteButtonView, at indexPath: IndexPath) {
+        guard
+            let section = dataSource.sectionIdentifier(for: indexPath.section),
+                section == .customColors
+        else {
+            deleteButton.isHidden = true
+            return
+        }
+        deleteButton.isHidden = !isEditing
+    }
+    
     private func addColor() {
         let newColor: ColorItem = .random
         let newItem: Item = .custom(colorItem: newColor)
@@ -39,7 +50,7 @@ extension ColorsGridViewController {
         
         for indexPath in collectionView.indexPathsForVisibleSupplementaryElements(ofKind: ElementKind.deleteButton.rawValue) {
             if let deleteButton = collectionView.supplementaryView(forElementKind: ElementKind.deleteButton.rawValue, at: indexPath) as? ColorGridDeleteButtonView {
-                deleteButton.isHidden = !isEditing
+                toggleDeleteButtonVisibility(deleteButton, at: indexPath)
             }
         }
     }

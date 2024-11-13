@@ -17,9 +17,6 @@ class ListViewController: UITableViewController {
     init(model: Model) {
         self.model = model
         super.init(style: .insetGrouped)
-        self.registerTableViewCellAndHeader()
-        self.connectDataSource()
-        self.applySnapshot()
     }
     
     required init?(coder: NSCoder) {
@@ -30,18 +27,26 @@ class ListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationBar()
+        configureNavigationBar()
+        registerViews()
+        connectDataSource()
+        applySnapshot()
     }
     
     // MARK: - Methods
     
-    private func setupNavigationBar() {
+    private func configureNavigationBar() {
+        let optionsMenu = UIMenu(children: [
+            UIAction(title: Action.add.rawValue, image: UIImage(systemName: "plus"), handler: handleOptionsMenuAction),
+            UIAction(title: Action.edit.rawValue, image: UIImage(systemName: "square.and.pencil"), handler: handleOptionsMenuAction)
+        ])
+        
         navigationItem.title = "Colors"
-        navigationItem.largeTitleDisplayMode = .always
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addColor))
+        navigationItem.largeTitleDisplayMode = .automatic
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), menu: optionsMenu)
     }
     
-    private func registerTableViewCellAndHeader() {
+    private func registerViews() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: headerReuseIdentifier)
     }

@@ -56,4 +56,33 @@ extension ListViewController {
         
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard
+            editingStyle == .delete,
+            dataSource.sectionIdentifier(for: indexPath.section) == .customColors,
+            let item = dataSource.itemIdentifier(for: indexPath)
+        else {
+            return
+        }
+        delete(item: item)
+    }
+    
+    // MARK: - Row Editing Style
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return dataSource.sectionIdentifier(for: indexPath.section) == .customColors
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        if dataSource.sectionIdentifier(for: indexPath.section) == .customColors {
+            return .delete
+        } else {
+            return .none
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return dataSource.sectionIdentifier(for: indexPath.section) == .customColors
+    }
 }

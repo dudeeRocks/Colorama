@@ -3,7 +3,21 @@
 import UIKit
 
 extension ListViewController {
-    @objc func addColor() {
+   
+    enum Action: String, CaseIterable {
+        case add = "Add"
+        case edit = "Edit"
+    }
+    
+    func handleOptionsMenuAction(_ action: UIAction) {
+        if action.title == Action.add.rawValue {
+            addColor()
+        } else {
+            toggleEditState()
+        }
+    }
+    
+    private func addColor() {
         let newColor: ColorItem = .random
         let newItem: Item = .custom(colorItem: newColor)
         
@@ -17,5 +31,11 @@ extension ListViewController {
         
         let navigationVC = UINavigationController(rootViewController: detailsVC)
         present(navigationVC, animated: true)
+    }
+    
+    private func toggleEditState() {
+        UIView.animate(.easeInOut) {
+            isEditing.toggle()
+        }
     }
 }

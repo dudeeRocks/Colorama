@@ -17,6 +17,9 @@ class ColorsGridViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.backgroundColor = .systemGroupedBackground
+        collectionView.delegate = self
+        configureNavigationBar()
         configureLayout()
         registerReusableViews()
         connectDataSource()
@@ -28,9 +31,6 @@ class ColorsGridViewController: UICollectionViewController {
     init(model: Model) {
         self.model = model
         super.init(collectionViewLayout: UICollectionViewLayout())
-        setUpNavigationBar()
-        view.backgroundColor = .systemGroupedBackground
-        collectionView.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -40,7 +40,7 @@ class ColorsGridViewController: UICollectionViewController {
     // MARK: - Layout Configuration
     
     func configureLayout() {
-        let spacing: CGFloat = 10
+        let spacing: CGFloat = 20
         let itemsPerRow: Int = 3
         
         let deleteButtonAnchor = NSCollectionLayoutAnchor(edges: [.top, .trailing], absoluteOffset: CGPoint(x: 8, y: -8))
@@ -59,7 +59,7 @@ class ColorsGridViewController: UICollectionViewController {
         
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = spacing
-        section.contentInsets = NSDirectionalEdgeInsets(top: spacing / 2, leading: spacing, bottom: spacing / 2, trailing: spacing)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: spacing, bottom: spacing * 2, trailing: spacing)
         section.boundarySupplementaryItems = [sectionHeader]
         
         let layout = UICollectionViewCompositionalLayout(section: section)
@@ -68,7 +68,7 @@ class ColorsGridViewController: UICollectionViewController {
     
     // MARK: - Navigation Bar
     
-    func setUpNavigationBar() {
+    func configureNavigationBar() {
         let optionsMenu = UIMenu(children: [
             UIAction(title: Action.add.rawValue, image: UIImage(systemName: "plus"), handler: handleOptionsMenuAction),
             UIAction(title: Action.edit.rawValue, image: UIImage(systemName: "square.and.pencil"), handler: handleOptionsMenuAction)

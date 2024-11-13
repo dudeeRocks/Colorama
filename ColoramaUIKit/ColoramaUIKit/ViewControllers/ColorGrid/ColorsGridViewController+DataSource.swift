@@ -14,7 +14,7 @@ extension ColorsGridViewController {
     func applySnapshot() {
         var snapshot = Snapshot()
         
-        snapshot.appendSections([.systemColors, .customColors])
+        snapshot.appendSections([.customColors, .systemColors])
         for systemColor in model.systemColors {
             snapshot.appendItems([.system(colorItem: systemColor)], toSection: .systemColors)
         }
