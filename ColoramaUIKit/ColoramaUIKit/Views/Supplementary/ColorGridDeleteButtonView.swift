@@ -4,6 +4,10 @@ import UIKit
 
 class ColorGridDeleteButtonView: UICollectionReusableView {
     
+    weak var delegate: ColorGridDeleteButtonViewDelegate?
+    
+    var onTap: () -> Void = { }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.configure()
@@ -14,21 +18,32 @@ class ColorGridDeleteButtonView: UICollectionReusableView {
     }
     
     func configure() {
-        let icon = UIImageView(image: UIImage(systemName: "minus.circle.fill"))
         let size: CGFloat = 32.0
+        let button = UIButton()
+        let image = UIImage(systemName: "minus.circle.fill")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: size))
         
-        addSubview(icon)
-        icon.tintColor = .systemRed
-        icon.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(image, for: .normal)
+        button.tintColor = .systemRed
+        addSubview(button)
+        
+        button.addTarget(delegate, action: #selector(buttonAction), for: .touchUpInside)
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            icon.heightAnchor.constraint(equalToConstant: size),
-            icon.widthAnchor.constraint(equalToConstant: size),
-            icon.centerXAnchor.constraint(equalTo: centerXAnchor),
-            icon.centerYAnchor.constraint(equalTo: centerYAnchor)
+            button.widthAnchor.constraint(equalToConstant: size),
+            button.heightAnchor.constraint(equalToConstant: size),
+            button.centerXAnchor.constraint(equalTo: centerXAnchor),
+            button.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
         
         backgroundColor = .white
         layer.cornerRadius = size / 2.0
     }
+    
+    @objc private func buttonAction() {
+        onTap()
+    }
 }
+
+protocol ColorGridDeleteButtonViewDelegate: AnyObject { }

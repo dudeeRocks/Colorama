@@ -2,7 +2,7 @@
 
 import UIKit
 
-extension ColorsGridViewController {
+extension ColorsGridViewController: ColorGridDeleteButtonViewDelegate {
     
     enum Action: String, CaseIterable {
         case add = "Add"
@@ -19,13 +19,15 @@ extension ColorsGridViewController {
     
     func toggleDeleteButtonVisibility(_ deleteButton: ColorGridDeleteButtonView, at indexPath: IndexPath) {
         guard
-            let section = dataSource.sectionIdentifier(for: indexPath.section),
-                section == .customColors
+            let item = dataSource.itemIdentifier(for: indexPath),
+            dataSource.sectionIdentifier(for: indexPath.section) == .customColors
         else {
             deleteButton.isHidden = true
             return
         }
+        deleteButton.delegate = self
         deleteButton.isHidden = !isEditing
+        deleteButton.onTap = { [weak self] in self?.delete(item: item) }
     }
     
     // MARK: - Add Color
@@ -72,4 +74,3 @@ extension ColorsGridViewController {
         }
     }
 }
-
