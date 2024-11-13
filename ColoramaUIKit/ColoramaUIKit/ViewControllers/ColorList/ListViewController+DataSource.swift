@@ -43,12 +43,12 @@ extension ListViewController {
             listItemConfiguration.color = colorItem.color
             listItemConfiguration.name = colorItem.name
             cell.contentConfiguration = listItemConfiguration
+            cell.accessoryType = .disclosureIndicator
         case .emptyState:
-            var emptyStateConfiguration = cell.emptyStateConfiguration()
+            let emptyStateConfiguration = cell.emptyStateConfiguration()
             cell.contentConfiguration = emptyStateConfiguration
+            cell.accessoryType = .none
         }
-        
-        cell.accessoryType = .disclosureIndicator
         
         return cell
     }
