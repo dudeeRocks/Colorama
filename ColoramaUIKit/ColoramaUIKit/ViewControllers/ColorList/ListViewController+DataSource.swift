@@ -11,7 +11,9 @@ extension ListViewController {
         dataSource = DataSource(tableView: tableView, cellProvider: cellProvider)
     }
     
-    func applySnapshot() {
+    func applySnapshot(_ animated: Bool = false) {
+        guard dataSource != nil else { return }
+        
         var snapshot = Snapshot()
         
         snapshot.appendSections([.customColors, .systemColors])
@@ -27,14 +29,7 @@ extension ListViewController {
             }
         }
         
-        dataSource.apply(snapshot, animatingDifferences: true)
-    }
-    
-    func delete(item: Item) {
-        var updatedSnapshot = dataSource.snapshot()
-        model.removeColor(item.colorItem!)
-        updatedSnapshot.deleteItems([item])
-        dataSource.apply(updatedSnapshot, animatingDifferences: true)
+        dataSource.apply(snapshot, animatingDifferences: animated)
     }
     
     // MARK: - Cell Provider

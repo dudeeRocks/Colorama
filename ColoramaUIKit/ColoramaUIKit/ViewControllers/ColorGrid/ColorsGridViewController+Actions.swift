@@ -28,6 +28,8 @@ extension ColorsGridViewController {
         deleteButton.isHidden = !isEditing
     }
     
+    // MARK: - Add Color
+    
     private func addColor() {
         let newColor: ColorItem = .random
         let newItem: Item = .custom(colorItem: newColor)
@@ -43,6 +45,21 @@ extension ColorsGridViewController {
         let navigationVC = UINavigationController(rootViewController: detailsVC)
         present(navigationVC, animated: true)
     }
+    
+    // MARK: - Delete Color
+    
+    func delete(item: Item) {
+        var updatedSnapshot = dataSource.snapshot()
+        model.removeColor(item.colorItem!)
+        updatedSnapshot.deleteItems([item])
+        dataSource.apply(updatedSnapshot, animatingDifferences: true)
+        
+        if model.customColors.isEmpty {
+            configureBarButtonMenu()
+        }
+    }
+    
+    // MARK: - Toggle Edit State
     
     private func toggleEditState() {
         isEditing.toggle()

@@ -26,6 +26,11 @@ class ColorsGridViewController: UICollectionViewController {
         applySnapshot()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        applySnapshot()
+        configureBarButtonMenu()
+    }
+    
     // MARK: - Initialization
     
     init(model: Model) {
@@ -69,14 +74,26 @@ class ColorsGridViewController: UICollectionViewController {
     // MARK: - Navigation Bar
     
     func configureNavigationBar() {
-        let optionsMenu = UIMenu(children: [
-            UIAction(title: Action.add.rawValue, image: UIImage(systemName: "plus"), handler: handleOptionsMenuAction),
-            UIAction(title: Action.edit.rawValue, image: UIImage(systemName: "square.and.pencil"), handler: handleOptionsMenuAction)
-        ])
-        
         navigationItem.title = "Colors"
         navigationItem.largeTitleDisplayMode = .automatic
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), menu: optionsMenu)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"))
+        configureBarButtonMenu()
+    }
+    
+    func configureBarButtonMenu() {
+        let isEditButtonDisabled: Bool = model.customColors.isEmpty
+        let optionsMenu = UIMenu(children: [
+            UIAction(
+                title: Action.add.rawValue,
+                image: UIImage(systemName: "plus"),
+                handler: handleOptionsMenuAction),
+            UIAction(
+                title: Action.edit.rawValue,
+                image: UIImage(systemName: "square.and.pencil"),
+                attributes: isEditButtonDisabled ? [.disabled] : [],
+                handler: handleOptionsMenuAction)
+        ])
+        navigationItem.rightBarButtonItem?.menu = optionsMenu
     }
 }
 

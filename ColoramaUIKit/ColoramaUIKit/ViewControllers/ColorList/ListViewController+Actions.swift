@@ -9,6 +9,8 @@ extension ListViewController {
         case edit = "Edit"
     }
     
+    // MARK: Menu Actions Handler
+    
     func handleOptionsMenuAction(_ action: UIAction) {
         if action.title == Action.add.rawValue {
             addColor()
@@ -16,6 +18,8 @@ extension ListViewController {
             toggleEditState()
         }
     }
+    
+    // MARK: - Add Color
     
     private func addColor() {
         let newColor: ColorItem = .random
@@ -32,6 +36,21 @@ extension ListViewController {
         let navigationVC = UINavigationController(rootViewController: detailsVC)
         present(navigationVC, animated: true)
     }
+    
+    // MARK: - Delete Color
+    
+    func delete(item: Item) {
+        var updatedSnapshot = dataSource.snapshot()
+        model.removeColor(item.colorItem!)
+        updatedSnapshot.deleteItems([item])
+        dataSource.apply(updatedSnapshot, animatingDifferences: true)
+        
+        if model.customColors.isEmpty {
+            configureBarButtonMenu()
+        }
+    }
+    
+    // MARK: - Toggle Edit State
     
     private func toggleEditState() {
         UIView.animate(.easeInOut) {

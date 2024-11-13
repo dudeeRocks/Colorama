@@ -11,7 +11,9 @@ extension ColorsGridViewController {
         dataSource.supplementaryViewProvider = supplementaryViewProvider
     }
     
-    func applySnapshot() {
+    func applySnapshot(_ animated: Bool = false) {
+        guard dataSource != nil else { return }
+        
         var snapshot = Snapshot()
         
         snapshot.appendSections([.customColors, .systemColors])
@@ -27,7 +29,7 @@ extension ColorsGridViewController {
             }
         }
         
-        dataSource.apply(snapshot, animatingDifferences: true)
+        dataSource.apply(snapshot, animatingDifferences: animated)
     }
     
     private func cellProvider(for collectionView: UICollectionView, at indexPath: IndexPath, item: Item) -> UICollectionViewCell {

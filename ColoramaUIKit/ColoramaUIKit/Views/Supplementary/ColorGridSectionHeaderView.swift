@@ -34,7 +34,7 @@ class ColorGridSectionHeaderView: UICollectionReusableView {
             label.topAnchor.constraint(equalTo: topAnchor, constant: spacing),
             label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: spacing),
             label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -spacing),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -(spacing / 4))
+            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -(spacing / 2))
         ])
     }
 }

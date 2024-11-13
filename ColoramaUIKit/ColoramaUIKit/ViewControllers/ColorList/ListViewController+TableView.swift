@@ -40,14 +40,13 @@ extension ListViewController {
     // MARK: - Row Swipe Actions
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        guard let item = dataSource.itemIdentifier(for: indexPath) else { return nil }
-        
-        // Retrieve the section that contains the swiped item
-        let snapshot = dataSource.snapshot()
-        let sectionContainingSwipedItem = snapshot.sectionIdentifier(containingItem: item)
-        
-        // Check if item is in 'custom colors' section. Colors in 'system colors' section must not be deleted!
-        guard sectionContainingSwipedItem == .customColors else { return nil }
+        guard
+            let item = dataSource.itemIdentifier(for: indexPath),
+            dataSource.sectionIdentifier(for: indexPath.section) == .customColors,
+            item != .emptyState
+        else {
+            return nil
+        }
         
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, completion in
             self.delete(item: item)
@@ -61,7 +60,8 @@ extension ListViewController {
         guard
             editingStyle == .delete,
             dataSource.sectionIdentifier(for: indexPath.section) == .customColors,
-            let item = dataSource.itemIdentifier(for: indexPath)
+            let item = dataSource.itemIdentifier(for: indexPath),
+            item != .emptyState
         else {
             return
         }
@@ -71,11 +71,11 @@ extension ListViewController {
     // MARK: - Row Editing Style
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return dataSource.sectionIdentifier(for: indexPath.section) == .customColors
+        return dataSource.sectionIdentifier(for: indexPath.section) == .customColors && dataSource.itemIdentifier(for: indexPath) != .emptyState
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        if dataSource.sectionIdentifier(for: indexPath.section) == .customColors {
+        if dataSource.sectionIdentifier(for: indexPath.section) == .customColors && dataSource.itemIdentifier(for: indexPath) != .emptyState {
             return .delete
         } else {
             return .none
@@ -83,6 +83,6 @@ extension ListViewController {
     }
     
     override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-        return dataSource.sectionIdentifier(for: indexPath.section) == .customColors
+        return dataSource.sectionIdentifier(for: indexPath.section) == .customColors && dataSource.itemIdentifier(for: indexPath) != .emptyState
     }
 }

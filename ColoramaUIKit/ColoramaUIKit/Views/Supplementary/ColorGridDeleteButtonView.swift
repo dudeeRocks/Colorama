@@ -14,27 +14,21 @@ class ColorGridDeleteButtonView: UICollectionReusableView {
     }
     
     func configure() {
-        let icon = UIImageView(image: UIImage(systemName: "xmark"))
-        let spacing: CGFloat = 4.0
-        let size: CGFloat = 20.0
+        let icon = UIImageView(image: UIImage(systemName: "minus.circle.fill"))
+        let size: CGFloat = 32.0
         
         addSubview(icon)
-        icon.tintColor = .white
+        icon.tintColor = .systemRed
         icon.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            icon.topAnchor.constraint(equalTo: topAnchor, constant: spacing),
-            icon.leadingAnchor.constraint(equalTo: leadingAnchor, constant: spacing),
-            icon.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -spacing),
-            icon.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -spacing),
             icon.heightAnchor.constraint(equalToConstant: size),
-            icon.widthAnchor.constraint(equalToConstant: size)
+            icon.widthAnchor.constraint(equalToConstant: size),
+            icon.centerXAnchor.constraint(equalTo: centerXAnchor),
+            icon.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
         
-        layer.cornerRadius = (size + spacing) / 2
-        layer.borderColor = UIColor.separator.cgColor
-        layer.borderWidth = 2.0
-        
-        backgroundColor = .black.withAlphaComponent(0.8)
+        backgroundColor = .white
+        layer.cornerRadius = size / 2.0
     }
 }
