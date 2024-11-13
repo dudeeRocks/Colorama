@@ -39,14 +39,13 @@ extension ListViewController {
         
         switch item {
         case .system(let colorItem), .custom(colorItem: let colorItem):
-            var content = cell.colorItemConfiguration()
-            content.color = colorItem.color
-            content.name = colorItem.name
-            cell.contentConfiguration = content
+            var listItemConfiguration = cell.listItemConfiguration()
+            listItemConfiguration.color = colorItem.color
+            listItemConfiguration.name = colorItem.name
+            cell.contentConfiguration = listItemConfiguration
         case .emptyState:
-            var content = cell.defaultContentConfiguration()
-            content.text = "No Colors"
-            cell.contentConfiguration = content
+            var emptyStateConfiguration = cell.emptyStateConfiguration()
+            cell.contentConfiguration = emptyStateConfiguration
         }
         
         cell.accessoryType = .disclosureIndicator

@@ -112,7 +112,7 @@ extension ColorRowView {
 }
 
 extension UITableViewCell {
-    func colorItemConfiguration() -> ColorRowView.Configuration {
+    func listItemConfiguration() -> ColorRowView.Configuration {
         ColorRowView.Configuration()
     }
 }

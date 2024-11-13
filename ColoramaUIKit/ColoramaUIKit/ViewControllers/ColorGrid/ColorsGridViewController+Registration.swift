@@ -15,18 +15,18 @@ extension ColorsGridViewController {
     }
     
     private func cellRegistrationHandler(for cell: UICollectionViewCell, at indexPath: IndexPath, item: Item) {
-        var contentConfiguration = cell.gridItemConfiguration()
-        
         switch item {
         case .system(let colorItem), .custom(let colorItem):
-            contentConfiguration.color = colorItem.color
-            contentConfiguration.name = colorItem.name
+            var gridItemConfiguration = cell.gridItemConfiguration()
+            gridItemConfiguration.color = colorItem.color
+            gridItemConfiguration.name = colorItem.name
+            
+            cell.contentConfiguration = gridItemConfiguration
         case .emptyState:
-            contentConfiguration.color = .tertiarySystemBackground
-            contentConfiguration.name = "No colors available"
+            var emptyStateConfiguration = cell.emptyStateConfiguration()
+            emptyStateConfiguration.isGrid = true
+            cell.contentConfiguration = emptyStateConfiguration
         }
-
-        cell.contentConfiguration = contentConfiguration
     }
     
     private func sectionHeaderRegistrationHandler(for header: ColorGridSectionHeaderView, elementKind: String, at indexPath: IndexPath) {

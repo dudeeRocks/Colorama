@@ -34,20 +34,18 @@ class ColorCellView: UIView, UIContentView {
     }
     
     private func layOutViews() {
-        let spacing: CGFloat = 10
-        
-        colorView.layer.cornerRadius = 10
+        colorView.layer.cornerRadius = 20
         colorView.layer.borderWidth = 1
         colorView.layer.borderColor = UIColor.separator.cgColor
         
         label.textColor = .label
         label.font = .preferredFont(forTextStyle: .body)
         label.textAlignment = .center
-        label.numberOfLines = 0
+        label.numberOfLines = 1
         
         let stackView = UIStackView(arrangedSubviews: [colorView, label])
         stackView.axis = .vertical
-        stackView.spacing = spacing
+        stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(stackView)
         
