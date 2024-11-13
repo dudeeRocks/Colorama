@@ -37,6 +37,7 @@ class ListViewController: UITableViewController {
     
     private func setupNavigationBar() {
         navigationItem.title = "Colors"
+        navigationItem.largeTitleDisplayMode = .always
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addColor))
     }
     

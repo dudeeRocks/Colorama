@@ -28,24 +28,13 @@ class ColorsGridViewController: UICollectionViewController {
     init(model: Model) {
         self.model = model
         super.init(collectionViewLayout: UICollectionViewLayout())
-        
+        setUpNavigationBar()
         view.backgroundColor = .systemGroupedBackground
-        
-        navigationItem.title = "Colors"
-        navigationItem.largeTitleDisplayMode = .automatic
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editButtonTapped))
-        
         collectionView.delegate = self
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    // MARK: - Actions
-    @objc func editButtonTapped() {
-        isEditing.toggle()
-        print("isEditing: \(isEditing)")
     }
     
     // MARK: - Layout Configuration
@@ -75,6 +64,19 @@ class ColorsGridViewController: UICollectionViewController {
         
         let layout = UICollectionViewCompositionalLayout(section: section)
         collectionView.collectionViewLayout = layout
+    }
+    
+    // MARK: - Navigation Bar
+    
+    func setUpNavigationBar() {
+        let optionsMenu = UIMenu(children: [
+            UIAction(title: Action.add.rawValue, image: UIImage(systemName: "plus"), handler: handleOptionsMenuAction),
+            UIAction(title: Action.edit.rawValue, image: UIImage(systemName: "square.and.pencil"), handler: handleOptionsMenuAction)
+        ])
+        
+        navigationItem.title = "Colors"
+        navigationItem.largeTitleDisplayMode = .automatic
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), menu: optionsMenu)
     }
 }
 

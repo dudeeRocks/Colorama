@@ -35,7 +35,7 @@ extension ColorsGridViewController {
     }
     
     private func deleteButtonRegisterationHandler(for deleteButton: ColorGridDeleteButtonView, elementKind: String, at indexPath: IndexPath) {
-        deleteButton.isHidden = isEditing // FIXME: This check happens only when the item (cell) appears on screen
+        deleteButton.isHidden = !isEditing
     }
 }
 
