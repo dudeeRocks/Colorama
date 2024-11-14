@@ -6,12 +6,7 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		FA0D95FA2CE61F8300D40006 /* ColorDetailsViewController+CellRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0D95F92CE61F8300D40006 /* ColorDetailsViewController+CellRegistration.swift */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
-		FA0D95F92CE61F8300D40006 /* ColorDetailsViewController+CellRegistration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ColorDetailsViewController+CellRegistration.swift"; path = "ColoramaUIKit/ViewControllers/ColorDetailsViewController+CellRegistration.swift"; sourceTree = "<group>"; };
 		FA8A9CCF2CB559BE00DD167E /* ColoramaUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColoramaUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -50,7 +45,6 @@
 		FA8A9CC62CB559BE00DD167E = {
 			isa = PBXGroup;
 			children = (
-				FA0D95F92CE61F8300D40006 /* ColorDetailsViewController+CellRegistration.swift */,
 				FA8A9CD12CB559BE00DD167E /* ColoramaUIKit */,
 				FA8A9CD02CB559BE00DD167E /* Products */,
 			);
@@ -138,7 +132,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA0D95FA2CE61F8300D40006 /* ColorDetailsViewController+CellRegistration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
