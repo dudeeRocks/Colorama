@@ -9,7 +9,7 @@ extension ColorsGridViewController: ColorGridDeleteButtonViewDelegate {
         case edit = "Edit"
     }
     
-    func handleOptionsMenuAction(_ action: UIAction) {
+    func handleRightBarButtonAction(_ action: UIAction) {
         if action.title == Action.add.rawValue {
             addColor()
         } else {
@@ -57,7 +57,7 @@ extension ColorsGridViewController: ColorGridDeleteButtonViewDelegate {
         dataSource.apply(updatedSnapshot, animatingDifferences: true)
         
         if model.customColors.isEmpty {
-            configureBarButtonMenu()
+            configureRightBarButtonItem()
         }
     }
     
@@ -66,6 +66,7 @@ extension ColorsGridViewController: ColorGridDeleteButtonViewDelegate {
     private func toggleEditState() {
         isEditing.toggle()
         collectionView.collectionViewLayout.invalidateLayout()
+        configureRightBarButtonItem()
         
         for indexPath in collectionView.indexPathsForVisibleSupplementaryElements(ofKind: ElementKind.deleteButton.rawValue) {
             if let deleteButton = collectionView.supplementaryView(forElementKind: ElementKind.deleteButton.rawValue, at: indexPath) as? ColorGridDeleteButtonView {
