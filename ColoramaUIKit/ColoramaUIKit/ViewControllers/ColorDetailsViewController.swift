@@ -2,25 +2,38 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
-class ColorDetailsViewController: UIViewController {
+class ColorDetailsViewController: UICollectionViewController {
+    
+    enum DetailsViewState { case view, edit, add }
 
     var colorItem: ColorItem
+    var state: DetailsViewState
     
-    init(colorItem: ColorItem) {
+    var cellRegistration: UICollectionView.CellRegistration<UICollectionViewListCell, SectionItem>!
+    var dataSource: DataSource!
+    
+    init(colorItem: ColorItem, state: DetailsViewState) {
         self.colorItem = colorItem
-        super.init(nibName: nil, bundle: nil)
+        self.state = state
+        super.init(collectionViewLayout: UICollectionViewLayout())
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = colorItem.color
+        configureLayout()
+        registerCell()
+        connectDataSource()
+        applySnapshot()
+    }
+    
+    func configureLayout() {
+        var layoutConfiguration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+        layoutConfiguration.headerMode = .firstItemInSection
+        
+        collectionView.collectionViewLayout = UICollectionViewCompositionalLayout.list(using: layoutConfiguration)
     }
 }

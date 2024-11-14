@@ -13,7 +13,7 @@ extension ListViewController {
     
     func handleRightBarButtonAction(_ action: UIAction) {
         if action.title == Action.add.rawValue {
-            addColor()
+            presentAddColorScreen()
         } else {
             toggleEditState()
         }
@@ -21,12 +21,8 @@ extension ListViewController {
     
     // MARK: - Add Color
     
-    private func addColor() {
-        let newColor: ColorItem = .random
-        model.addColor(newColor)
-        applySnapshot()
-        
-        let detailsVC = ColorDetailsViewController(colorItem: newColor)
+    private func presentAddColorScreen() {
+        let detailsVC = ColorDetailsViewController(colorItem: .newColor, state: .add)
         
         let navigationVC = UINavigationController(rootViewController: detailsVC)
         present(navigationVC, animated: true)
