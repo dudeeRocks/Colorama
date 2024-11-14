@@ -14,7 +14,10 @@ extension ColorDetailsViewController {
                 configureSectionHeader(for: cell, title: title)
             }
         case .color(let color):
-            configureColorView(for: cell, color: color)
+            switch state {
+            case .edit, .add: configureColorPickerView(for: cell, color: color)
+            case .view: configureColorView(for: cell, color: color)
+            }
         case .name(let name):
             configureNameView(for: cell, name: name)
         case .deleteButton:
@@ -30,6 +33,12 @@ extension ColorDetailsViewController {
     
     private func configureColorView(for cell: UICollectionViewListCell, color: UIColor) {
         var contentConfiguration = ColorView.Configuration()
+        contentConfiguration.color = color
+        cell.contentConfiguration = contentConfiguration
+    }
+    
+    private func configureColorPickerView(for cell: UICollectionViewListCell, color: UIColor) {
+        var contentConfiguration = ColorPickerView.Configuration()
         contentConfiguration.color = color
         cell.contentConfiguration = contentConfiguration
     }
