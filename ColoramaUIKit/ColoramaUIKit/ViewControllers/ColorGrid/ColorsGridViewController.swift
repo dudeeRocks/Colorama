@@ -72,7 +72,7 @@ class ColorsGridViewController: UICollectionViewController {
                     
                     let customColorsGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(100))
                     let customColorsGroup = NSCollectionLayoutGroup.horizontal(layoutSize: customColorsGroupSize, subitems: [customColorsItem])
-                    customColorsGroup.interItemSpacing = .flexible(spacing * 2)
+                    customColorsGroup.interItemSpacing = .flexible(spacing)
                     
                     section = NSCollectionLayoutSection(group: customColorsGroup)
                 }
