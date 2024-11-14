@@ -11,7 +11,7 @@ extension ListViewController {
     
     // MARK: Menu Actions Handler
     
-    func handleOptionsMenuAction(_ action: UIAction) {
+    func handleRightBarButtonAction(_ action: UIAction) {
         if action.title == Action.add.rawValue {
             addColor()
         } else {
@@ -46,7 +46,7 @@ extension ListViewController {
         dataSource.apply(updatedSnapshot, animatingDifferences: true)
         
         if model.customColors.isEmpty {
-            configureBarButtonMenu()
+            configureRightBarButtonItem()
         }
     }
     
@@ -55,6 +55,7 @@ extension ListViewController {
     private func toggleEditState() {
         UIView.animate(.easeInOut) {
             isEditing.toggle()
+            configureRightBarButtonItem()
         }
     }
 }

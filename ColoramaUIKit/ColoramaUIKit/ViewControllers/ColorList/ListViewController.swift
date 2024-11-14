@@ -35,7 +35,7 @@ class ListViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         applySnapshot()
-        configureBarButtonMenu()
+        configureRightBarButtonItem()
     }
     
     // MARK: - Navigation Bar
@@ -43,24 +43,31 @@ class ListViewController: UITableViewController {
     private func configureNavigationBar() {
         navigationItem.title = "Colors"
         navigationItem.largeTitleDisplayMode = .automatic
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"))
-        configureBarButtonMenu()
+        configureRightBarButtonItem()
     }
     
-    func configureBarButtonMenu() {
-        let isEditButtonDisabled: Bool = model.customColors.isEmpty
-        let optionsMenu = UIMenu(children: [
-            UIAction(
-                title: Action.add.rawValue,
-                image: UIImage(systemName: "plus"),
-                handler: handleOptionsMenuAction),
-            UIAction(
-                title: Action.edit.rawValue,
-                image: UIImage(systemName: "square.and.pencil"),
-                attributes: isEditButtonDisabled ? [.disabled] : [],
-                handler: handleOptionsMenuAction)
-        ])
-        navigationItem.rightBarButtonItem?.menu = optionsMenu
+    func configureRightBarButtonItem() {
+        if isEditing {
+            let doneButton = UIBarButtonItem(systemItem: .done, primaryAction: UIAction(title: Action.edit.rawValue, handler: handleRightBarButtonAction))
+            navigationItem.rightBarButtonItem = doneButton
+            navigationItem.rightBarButtonItem?.menu = nil
+        } else {
+            let optionsButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"))
+            let isEditButtonDisabled: Bool = model.customColors.isEmpty
+            let optionsMenu = UIMenu(children: [
+                UIAction(
+                    title: Action.add.rawValue,
+                    image: UIImage(systemName: "plus"),
+                    handler: handleRightBarButtonAction),
+                UIAction(
+                    title: Action.edit.rawValue,
+                    image: UIImage(systemName: "square.and.pencil"),
+                    attributes: isEditButtonDisabled ? [.disabled] : [],
+                    handler: handleRightBarButtonAction)
+            ])
+            navigationItem.rightBarButtonItem = optionsButton
+            navigationItem.rightBarButtonItem?.menu = optionsMenu
+        }
     }
     
     // MARK: - View Registration
