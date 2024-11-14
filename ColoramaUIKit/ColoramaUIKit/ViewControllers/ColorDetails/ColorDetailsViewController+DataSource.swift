@@ -30,6 +30,8 @@ extension ColorDetailsViewController {
     func applySnapshot() {
         var snapshot = Snapshot()
         
+        var colorForPicker: UIColor { newColor ?? colorItem.color}
+        
         switch state {
         case .view:
             snapshot.appendSections([.color, .name])
@@ -37,11 +39,11 @@ extension ColorDetailsViewController {
             snapshot.appendItems([.sectionHeader(title: DetailsSection.name.rawValue), .name(name: colorItem.name)], toSection: .name)
         case .add:
             snapshot.appendSections([.editColor, .editName])
-            snapshot.appendItems([.sectionHeader(title: DetailsSection.color.rawValue), .editColor(color: colorItem.color)], toSection: .editColor)
+            snapshot.appendItems([.sectionHeader(title: DetailsSection.color.rawValue), .editColor(color: colorForPicker)], toSection: .editColor)
             snapshot.appendItems([.sectionHeader(title: DetailsSection.name.rawValue), .editName(name: colorItem.name)], toSection: .editName)
         case .edit:
             snapshot.appendSections([.editColor, .editName, .deleteButton])
-            snapshot.appendItems([.sectionHeader(title: DetailsSection.color.rawValue), .editColor(color: colorItem.color)], toSection: .editColor)
+            snapshot.appendItems([.sectionHeader(title: DetailsSection.color.rawValue), .editColor(color: colorForPicker)], toSection: .editColor)
             snapshot.appendItems([.sectionHeader(title: DetailsSection.name.rawValue), .editName(name: colorItem.name)], toSection: .editName)
             snapshot.appendItems([.sectionHeader(title: ""), .deleteButton], toSection: .deleteButton)
         }

@@ -9,6 +9,9 @@ class ColorDetailsViewController: UICollectionViewController {
     var colorItem: ColorItem
     var state: State
     
+    var newColor: UIColor?
+    var newName: String?
+    
     var cellRegistration: UICollectionView.CellRegistration<UICollectionViewListCell, DetailsRow>!
     var dataSource: DataSource!
     

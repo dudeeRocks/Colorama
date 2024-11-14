@@ -17,11 +17,14 @@ class ColorPickerView: UIView, UIContentView {
         self.configuration = configuration
         super.init(frame: .zero)
         layOutViews()
+        subscribeToNotifications()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Methods
     
     private func configure(_ configuration: any UIContentConfiguration) {
         guard let configuration = configuration as? Configuration else { return }
@@ -55,6 +58,24 @@ class ColorPickerView: UIView, UIContentView {
             label.trailingAnchor.constraint(equalTo: colorView.leadingAnchor, constant: -spacing),
             label.centerYAnchor.constraint(equalTo: colorView.centerYAnchor)
         ])
+    }
+    
+    // MARK: - Updating Color View
+    
+    private func subscribeToNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateColorView), name: .colorChanged, object: nil)
+    }
+    
+    @objc private func updateColorView(_ notification: Notification) {
+        guard
+            let userInfo = notification.userInfo,
+            let color = userInfo[NSNotification.colorChanged] as? UIColor,
+            var configuration = configuration as? Configuration
+        else {
+            return
+        }
+        configuration.color = color
+        self.configuration = configuration
     }
 }
 
