@@ -23,13 +23,8 @@ extension ListViewController {
     
     private func addColor() {
         let newColor: ColorItem = .random
-        let newItem: Item = .custom(colorItem: newColor)
-        
-        var updatedSnapshot = dataSource.snapshot()
-        updatedSnapshot.appendItems([newItem], toSection: .customColors)
-        dataSource.apply(updatedSnapshot)
-        
         model.addColor(newColor)
+        applySnapshot()
         
         let detailsVC = ColorDetailsViewController(colorItem: newColor)
         
@@ -40,10 +35,8 @@ extension ListViewController {
     // MARK: - Delete Color
     
     func delete(item: Item) {
-        var updatedSnapshot = dataSource.snapshot()
         model.removeColor(item.colorItem!)
-        updatedSnapshot.deleteItems([item])
-        dataSource.apply(updatedSnapshot, animatingDifferences: true)
+        applySnapshot(true)
         
         if model.customColors.isEmpty {
             configureRightBarButtonItem()

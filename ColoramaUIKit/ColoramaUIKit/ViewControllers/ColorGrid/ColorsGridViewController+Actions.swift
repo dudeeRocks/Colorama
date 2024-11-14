@@ -57,6 +57,7 @@ extension ColorsGridViewController: ColorGridDeleteButtonViewDelegate {
         dataSource.apply(updatedSnapshot, animatingDifferences: true)
         
         if model.customColors.isEmpty {
+            configureLayout(animated: true)
             configureRightBarButtonItem()
         }
     }

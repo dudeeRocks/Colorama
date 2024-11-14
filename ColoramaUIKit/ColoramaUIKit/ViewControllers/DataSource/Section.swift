@@ -3,7 +3,7 @@
 import UIKit
 
 enum Section: Int, CaseIterable {
-    case systemColors, customColors
+    case customColors, systemColors
     
     var title: String {
         switch self {

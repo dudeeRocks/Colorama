@@ -35,6 +35,7 @@ class EmptyStateView: UIView, UIContentView {
         stackView.axis = .vertical
         stackView.spacing = 16
         stackView.alignment = .center
+        stackView.distribution = .fillEqually
         
         addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -52,7 +53,7 @@ class EmptyStateView: UIView, UIContentView {
         // MARK: Grid Setup
         if configuration.isGrid {
             backgroundColor = .systemBackground
-            layer.cornerRadius = 24
+            layer.cornerRadius = 12
         }
 
     }
