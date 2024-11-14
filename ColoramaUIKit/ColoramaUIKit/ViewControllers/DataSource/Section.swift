@@ -2,7 +2,7 @@
 
 import UIKit
 
-enum Section {
+enum Section: Int, CaseIterable {
     case systemColors, customColors
     
     var title: String {

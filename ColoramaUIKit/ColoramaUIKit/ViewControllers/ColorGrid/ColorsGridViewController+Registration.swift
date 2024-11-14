@@ -35,7 +35,7 @@ extension ColorsGridViewController {
     }
     
     private func deleteButtonRegisterationHandler(for deleteButton: ColorGridDeleteButtonView, elementKind: String, at indexPath: IndexPath) {
-        toggleDeleteButtonVisibility(deleteButton, at: indexPath)
+        configureDeleteButton(deleteButton, at: indexPath)
     }
 }
 
