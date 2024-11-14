@@ -30,27 +30,30 @@ class ColorPickerView: UIView, UIContentView {
     
     private func layOutViews() {
         let spacing: CGFloat = 10
-        let colorViewSize: CGFloat = 50
+        let colorViewSize: CGFloat = 30
         
+        addSubview(colorView)
+        colorView.layer.cornerRadius = colorViewSize / 2
+        colorView.translatesAutoresizingMaskIntoConstraints = false
+        colorView.layer.borderWidth = 2
+        colorView.layer.borderColor = UIColor.separator.cgColor
+        
+        addSubview(label)
         label.text = "Pick a color"
         label.textColor = .label
         label.font = .preferredFont(forTextStyle: .body)
         label.numberOfLines = 1
-        
-        colorView.layer.cornerRadius = colorViewSize / 2
-        
-        let stackView = UIStackView(arrangedSubviews: [label, colorView])
-        stackView.axis = .horizontal
-        stackView.spacing = 10
-        addSubview(stackView)
+        label.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: topAnchor, constant: spacing),
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: spacing),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -spacing),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -spacing),
+            colorView.heightAnchor.constraint(equalToConstant: colorViewSize),
             colorView.widthAnchor.constraint(equalToConstant: colorViewSize),
-            colorView.heightAnchor.constraint(equalToConstant: colorViewSize)
+            colorView.topAnchor.constraint(equalTo: topAnchor, constant: spacing),
+            colorView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -spacing),
+            colorView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -spacing),
+            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: spacing),
+            label.trailingAnchor.constraint(equalTo: colorView.leadingAnchor, constant: -spacing),
+            label.centerYAnchor.constraint(equalTo: colorView.centerYAnchor)
         ])
     }
 }
