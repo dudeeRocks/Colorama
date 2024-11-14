@@ -14,4 +14,11 @@ extension ColorDetailsViewController {
     @objc func addButtonTapped() {
         
     }
+    
+    @objc func cancelButtonTapped() {
+        switch state {
+        case .edit: updateUI(for: .view)
+        default: dismiss(animated: true)
+        }
+    }
 }
