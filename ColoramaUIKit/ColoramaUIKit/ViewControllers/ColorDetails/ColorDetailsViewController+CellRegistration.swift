@@ -7,18 +7,17 @@ extension ColorDetailsViewController {
         cellRegistration = .init(handler: cellRegistrationHandler)
     }
     
-    private func cellRegistrationHandler(for cell: UICollectionViewListCell, at indexPath: IndexPath, item: SectionItem) {        
+    private func cellRegistrationHandler(for cell: UICollectionViewListCell, at indexPath: IndexPath, item: DetailsRow) {        
         switch item {
         case .sectionHeader(let title):
-            if !title.isEmpty {
-                configureSectionHeader(for: cell, title: title)
-            }
+            configureSectionHeader(for: cell, title: title)
         case .color(let color):
-            switch state {
-            case .edit, .add: configureColorPickerView(for: cell, color: color)
-            case .view: configureColorView(for: cell, color: color)
-            }
+            configureColorView(for: cell, color: color)
         case .name(let name):
+            configureNameView(for: cell, name: name)
+        case .editColor(let color):
+            configureColorPickerView(for: cell, color: color)
+        case .editName(let name):
             configureNameView(for: cell, name: name)
         case .deleteButton:
             configureDeleteButton(for: cell)
@@ -27,7 +26,7 @@ extension ColorDetailsViewController {
     
     private func configureSectionHeader(for cell: UICollectionViewListCell, title: String) {
         var contentConfiguration = cell.defaultContentConfiguration()
-        contentConfiguration.text = title
+        contentConfiguration.text = title.isEmpty ? nil : title
         cell.contentConfiguration = contentConfiguration
     }
     
