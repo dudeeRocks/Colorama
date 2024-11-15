@@ -18,7 +18,7 @@ extension ColorDetailsViewController {
         case .editColor(let color):
             configureColorPickerView(for: cell, color: color)
         case .editName(let name):
-            configureNameView(for: cell, name: name)
+            configureNameTextFieldView(for: cell, text: name, delegate: self)
         case .deleteButton:
             configureDeleteButton(for: cell)
         }
@@ -45,6 +45,13 @@ extension ColorDetailsViewController {
     private func configureNameView(for cell: UICollectionViewListCell, name: String) {
         var contentConfiguration = cell.defaultContentConfiguration()
         contentConfiguration.text = name
+        cell.contentConfiguration = contentConfiguration
+    }
+    
+    private func configureNameTextFieldView(for cell: UICollectionViewListCell, text: String, delegate: UITextFieldDelegate) {
+        var contentConfiguration = ColorNameTextFieldView.Configuration()
+        contentConfiguration.text = text
+        contentConfiguration.delegate = delegate
         cell.contentConfiguration = contentConfiguration
     }
     
