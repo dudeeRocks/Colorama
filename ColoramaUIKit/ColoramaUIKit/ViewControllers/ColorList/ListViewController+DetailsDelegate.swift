@@ -4,7 +4,8 @@ import UIKit
 
 extension ListViewController: ColorDetailsDelegate {
     func didAddNewColor(item: ColorItem) {
-        //
+        model.addColor(item)
+        applySnapshot(true)
     }
     
     func didUpdateColor(item: ColorItem) {

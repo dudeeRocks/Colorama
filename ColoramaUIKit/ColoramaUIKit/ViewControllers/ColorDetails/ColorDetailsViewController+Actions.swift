@@ -8,7 +8,7 @@ extension ColorDetailsViewController {
     }
     
     @objc func saveButtonTapped() {
-        guard let newColor, let newName else { return }
+        guard let newColor = newColor, let newName = newName else { return } // FIXME: This check prevents saving. Noodle on this
         colorItem.color = newColor
         colorItem.name = newName
         
