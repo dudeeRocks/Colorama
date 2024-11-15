@@ -41,10 +41,11 @@ class ColorNameTextFieldView: UIView, UIContentView {
         let spacing: CGFloat = 10
         
         NSLayoutConstraint.activate([
-            textField.topAnchor.constraint(equalTo: topAnchor, constant: spacing),
+            textField.topAnchor.constraint(equalTo: topAnchor),
             textField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: spacing),
             textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -spacing),
-            textField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -spacing)
+            textField.bottomAnchor.constraint(equalTo: bottomAnchor),
+            textField.heightAnchor.constraint(equalToConstant: 48)
         ])
     }
 }

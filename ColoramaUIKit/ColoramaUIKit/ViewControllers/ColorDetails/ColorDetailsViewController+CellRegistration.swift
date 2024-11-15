@@ -50,7 +50,7 @@ extension ColorDetailsViewController {
     
     private func configureNameTextFieldView(for cell: UICollectionViewListCell, text: String, delegate: UITextFieldDelegate) {
         var contentConfiguration = ColorNameTextFieldView.Configuration()
-        contentConfiguration.text = text
+        contentConfiguration.text = state == .edit ? text : ""
         contentConfiguration.delegate = delegate
         cell.contentConfiguration = contentConfiguration
     }

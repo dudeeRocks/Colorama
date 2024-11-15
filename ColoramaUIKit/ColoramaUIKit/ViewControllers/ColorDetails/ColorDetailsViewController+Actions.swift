@@ -8,11 +8,18 @@ extension ColorDetailsViewController {
     }
     
     @objc func saveButtonTapped() {
-        updateUI(for: .view)
-    }
-    
-    @objc func addButtonTapped() {
+        guard let newColor, let newName else { return }
+        colorItem.color = newColor
+        colorItem.name = newName
         
+        switch state {
+        case .add:
+            navigationController?.popViewController(animated: true)
+            delegate.didAddNewColor(item: colorItem)
+        default:
+            updateUI(for: .view)
+            delegate.didUpdateColor(item: colorItem)
+        }
     }
     
     @objc func cancelButtonTapped() {
@@ -21,4 +28,15 @@ extension ColorDetailsViewController {
         default: dismiss(animated: true)
         }
     }
+    
+    func deleteColor() {
+        navigationController?.popViewController(animated: true)
+        delegate.didRemoveColor(item: colorItem)
+    }
+}
+
+protocol ColorDetailsDelegate {
+    func didAddNewColor(item: ColorItem)
+    func didUpdateColor(item: ColorItem)
+    func didRemoveColor(item: ColorItem)
 }

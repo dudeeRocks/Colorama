@@ -22,7 +22,7 @@ extension ListViewController {
     // MARK: - Add Color
     
     private func presentAddColorScreen() {
-        let detailsVC = ColorDetailsViewController(colorItem: .newColor, state: .add)
+        let detailsVC = ColorDetailsViewController(colorItem: .newColor, state: .add, delegate: self)
         
         let navigationVC = UINavigationController(rootViewController: detailsVC)
         present(navigationVC, animated: true)

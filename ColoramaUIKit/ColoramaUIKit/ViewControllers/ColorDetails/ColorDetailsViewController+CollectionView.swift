@@ -7,14 +7,13 @@ extension ColorDetailsViewController {
         guard let detailsRow = dataSource.itemIdentifier(for: indexPath) else { return }
         
         switch detailsRow {
-        case .color(let color):
+        case .color:
             return // TODO: Enlarge the color view?
-        case .editColor(let color):
+        case .editColor:
             presentColorPicker()
-        case .editName(let name):
-            return // TODO: Focus the text field
         case .deleteButton:
-            return // TODO: Trigger delete confirm alert
+            deleteColor()
+            return
         default: return
         }
     }

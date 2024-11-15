@@ -8,6 +8,7 @@ class ColorDetailsViewController: UICollectionViewController {
 
     var colorItem: ColorItem
     var state: State
+    let delegate: ColorDetailsDelegate
     
     var newColor: UIColor?
     var newName: String?
@@ -17,9 +18,10 @@ class ColorDetailsViewController: UICollectionViewController {
     
     // MARK: - Initialization
     
-    init(colorItem: ColorItem, state: State) {
+    init(colorItem: ColorItem, state: State, delegate: ColorDetailsDelegate) {
         self.colorItem = colorItem
         self.state = state
+        self.delegate = delegate
         super.init(collectionViewLayout: UICollectionViewLayout())
     }
     
@@ -64,9 +66,11 @@ class ColorDetailsViewController: UICollectionViewController {
             navigationItem.leftBarButtonItem = nil
         case .edit:
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
+            navigationItem.rightBarButtonItem?.isEnabled = true
             navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonTapped))
         case .add:
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(addButtonTapped))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
+            navigationItem.rightBarButtonItem?.isEnabled = false
             navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonTapped))
         }
     }

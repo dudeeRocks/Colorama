@@ -32,7 +32,7 @@ extension ListViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let colorItem: ColorItem = dataSource.itemIdentifier(for: indexPath)?.colorItem else { return }
         
-        let detailsVC = ColorDetailsViewController(colorItem: colorItem, state: .view)
+        let detailsVC = ColorDetailsViewController(colorItem: colorItem, state: .view, delegate: self)
         
         navigationController?.pushViewController(detailsVC, animated: true)
     }
