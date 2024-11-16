@@ -35,6 +35,7 @@ extension ListViewController {
         applySnapshot(true)
         
         if model.customColors.isEmpty {
+            isEditing = false
             configureRightBarButtonItem()
         }
     }
