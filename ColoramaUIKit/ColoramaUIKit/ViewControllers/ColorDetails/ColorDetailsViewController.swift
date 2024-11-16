@@ -40,6 +40,7 @@ class ColorDetailsViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.prefersLargeTitles = false
         configureNavigationBar()
         configureLayout()
         registerCell()
@@ -75,14 +76,28 @@ class ColorDetailsViewController: UICollectionViewController {
                 navigationItem.rightBarButtonItem = nil
             }
             navigationItem.leftBarButtonItem = nil
+            title = "Color Details"
         case .edit:
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
             navigationItem.rightBarButtonItem?.isEnabled = true
             navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonTapped))
+            title = "Edit Color"
         case .add:
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
             navigationItem.rightBarButtonItem?.isEnabled = false
             navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonTapped))
+            title = "Add Color"
+        }
+    }
+    
+    private func setNavigationBarTitle() {
+        switch state {
+        case .view:
+            title = "Color Details"
+        case .edit:
+            title = "Edit Color"
+        case .add:
+            title = "Add Color"
         }
     }
 }
