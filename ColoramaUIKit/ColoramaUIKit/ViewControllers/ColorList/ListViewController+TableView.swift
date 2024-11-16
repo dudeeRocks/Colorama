@@ -30,9 +30,9 @@ extension ListViewController {
     // MARK: - Row Selection
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let colorItem: ColorItem = dataSource.itemIdentifier(for: indexPath)?.colorItem else { return }
+        guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
         
-        let detailsVC = ColorDetailsViewController(colorItem: colorItem, state: .view, delegate: self)
+        let detailsVC = ColorDetailsViewController(item: item, state: .view, delegate: self)
         
         navigationController?.pushViewController(detailsVC, animated: true)
     }

@@ -16,12 +16,19 @@ class ColorDetailsViewController: UICollectionViewController {
     var cellRegistration: UICollectionView.CellRegistration<UICollectionViewListCell, DetailsRow>!
     var dataSource: DataSource!
     
+    private let isCustomColor: Bool
+    
     // MARK: - Initialization
     
-    init(colorItem: ColorItem, state: State, delegate: ColorDetailsDelegate) {
-        self.colorItem = colorItem
+    init(item: Item, state: State, delegate: ColorDetailsDelegate) {
+        self.colorItem = item.colorItem ?? .newColor
         self.state = state
         self.delegate = delegate
+        if case .custom = item {
+            self.isCustomColor = true
+        } else {
+            self.isCustomColor = false
+        }
         super.init(collectionViewLayout: UICollectionViewLayout())
     }
     
@@ -62,7 +69,11 @@ class ColorDetailsViewController: UICollectionViewController {
     func configureNavigationBar() {
         switch state {
         case .view:
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editButtonTapped))
+            if isCustomColor {
+                navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editButtonTapped))
+            } else {
+                navigationItem.rightBarButtonItem = nil
+            }
             navigationItem.leftBarButtonItem = nil
         case .edit:
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
