@@ -2,7 +2,7 @@
 
 import UIKit
 
-extension ColorsGridViewController: ColorGridDeleteButtonViewDelegate {
+extension GridViewController: ColorGridDeleteButtonViewDelegate {
     
     enum Action: String, CaseIterable {
         case add = "Add"

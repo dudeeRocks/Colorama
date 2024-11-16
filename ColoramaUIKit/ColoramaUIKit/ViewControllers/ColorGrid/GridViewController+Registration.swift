@@ -2,7 +2,7 @@
 
 import UIKit
 
-extension ColorsGridViewController {
+extension GridViewController {
     
     enum ElementKind: String, CaseIterable {
         case header, deleteButton

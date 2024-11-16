@@ -2,7 +2,7 @@
 
 import UIKit
 
-extension ColorsGridViewController: ColorDetailsDelegate {
+extension GridViewController: ColorDetailsDelegate {
     func didAddNewColor(item: ColorItem) {
         model.addColor(item)
         applySnapshot(true)

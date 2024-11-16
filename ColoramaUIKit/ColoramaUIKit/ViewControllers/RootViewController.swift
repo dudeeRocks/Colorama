@@ -23,7 +23,7 @@ class RootViewController: UITabBarController {
         listNavigationController.navigationBar.prefersLargeTitles = true
         
         // MARK: Grid VC setup
-        let gridViewController = ColorsGridViewController(model: model)
+        let gridViewController = GridViewController(model: model)
         let gridNavigationController = UINavigationController(rootViewController: gridViewController)
         gridNavigationController.tabBarItem.image = UIImage(systemName: "square.grid.2x2.fill")
         gridNavigationController.tabBarItem.title = "Grid"

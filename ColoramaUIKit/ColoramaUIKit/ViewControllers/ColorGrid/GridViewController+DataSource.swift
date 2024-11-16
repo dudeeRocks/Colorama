@@ -2,7 +2,7 @@
 
 import UIKit
 
-extension ColorsGridViewController {
+extension GridViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Item>
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Item>
 

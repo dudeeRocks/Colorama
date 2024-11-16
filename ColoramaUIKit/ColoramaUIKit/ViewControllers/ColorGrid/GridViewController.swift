@@ -2,7 +2,7 @@
 
 import UIKit
 
-class ColorsGridViewController: UICollectionViewController {
+class GridViewController: UICollectionViewController {
     
     let model: Model
     var dataSource: DataSource!
