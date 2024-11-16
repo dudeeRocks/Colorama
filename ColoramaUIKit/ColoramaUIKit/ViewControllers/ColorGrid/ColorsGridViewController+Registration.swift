@@ -25,6 +25,8 @@ extension ColorsGridViewController {
         case .emptyState:
             var emptyStateConfiguration = cell.emptyStateConfiguration()
             emptyStateConfiguration.isGrid = true
+            emptyStateConfiguration.target = self
+            emptyStateConfiguration.action = #selector(presentAddColorScreen)
             cell.contentConfiguration = emptyStateConfiguration
         }
     }

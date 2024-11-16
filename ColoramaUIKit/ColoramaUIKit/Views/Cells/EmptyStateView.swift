@@ -24,6 +24,7 @@ class EmptyStateView: UIView, UIContentView {
         let addColorButton = UIButton()
         addColorButton.setTitle("Add a color", for: .normal)
         addColorButton.setImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
+        addColorButton.addTarget(configuration.target, action: configuration.action, for: .touchUpInside)
         
         var buttonConfiguration = UIButton.Configuration.plain()
         buttonConfiguration.imagePadding = 10
@@ -74,6 +75,8 @@ class EmptyStateView: UIView, UIContentView {
     struct Configuration: UIContentConfiguration {
         
         var isGrid: Bool = false
+        var target: Any?
+        var action: Selector!
         
         func makeContentView() -> any UIView & UIContentView {
             EmptyStateView(configuration: self)

@@ -45,7 +45,9 @@ extension ListViewController {
             cell.contentConfiguration = listItemConfiguration
             cell.accessoryType = .disclosureIndicator
         case .emptyState:
-            let emptyStateConfiguration = cell.emptyStateConfiguration()
+            var emptyStateConfiguration = cell.emptyStateConfiguration()
+            emptyStateConfiguration.target = self
+            emptyStateConfiguration.action = #selector(presentAddColorScreen)
             cell.contentConfiguration = emptyStateConfiguration
             cell.accessoryType = .none
         }

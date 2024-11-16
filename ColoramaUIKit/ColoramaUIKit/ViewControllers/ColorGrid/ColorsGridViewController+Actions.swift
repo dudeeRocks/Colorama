@@ -32,7 +32,7 @@ extension ColorsGridViewController: ColorGridDeleteButtonViewDelegate {
     
     // MARK: - Add Color
     
-    private func presentAddColorScreen() {
+    @objc func presentAddColorScreen() {
         let detailsVC = ColorDetailsViewController(item: .custom(colorItem: .newColor), state: .add, delegate: self)
         
         let navigationVC = UINavigationController(rootViewController: detailsVC)
