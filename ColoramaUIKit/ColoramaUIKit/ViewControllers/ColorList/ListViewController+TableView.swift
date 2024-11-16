@@ -30,11 +30,18 @@ extension ListViewController {
     // MARK: - Row Selection
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
+        guard
+            let item = dataSource.itemIdentifier(for: indexPath),
+            item != .emptyState
+        else { return }
         
         let detailsVC = ColorDetailsViewController(item: item, state: .view, delegate: self)
         
         navigationController?.pushViewController(detailsVC, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        dataSource.itemIdentifier(for: indexPath) != .emptyState
     }
     
     // MARK: - Row Swipe Actions
