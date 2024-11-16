@@ -8,14 +8,19 @@ extension ColorDetailsViewController {
     }
     
     @objc func saveButtonTapped() {
-        guard let newColor = newColor, let newName = newName else { return } // FIXME: This check prevents saving. Noodle on this
-        colorItem.color = newColor
-        colorItem.name = newName
+        if let newColor = newColor {
+            colorItem.color = newColor
+        }
+        
+        if let newName = newName {
+            colorItem.name = newName
+        }
         
         switch state {
         case .add:
-            navigationController?.popViewController(animated: true)
-            delegate.didAddNewColor(item: colorItem)
+            dismiss(animated: true) { [unowned self] in
+                delegate.didAddNewColor(item: colorItem)
+            }
         default:
             updateUI(for: .view)
             delegate.didUpdateColor(item: colorItem)
