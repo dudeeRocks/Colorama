@@ -29,9 +29,15 @@ class RootViewController: UITabBarController {
         gridNavigationController.tabBarItem.title = "Grid"
         gridNavigationController.navigationBar.prefersLargeTitles = true
         
-        viewControllers = [listNavigationController, gridNavigationController]
+        // MARK: Sort VC setup
+        let sortViewController = SortViewController(model: model)
+        let sortNavigationController = UINavigationController(rootViewController: sortViewController)
+        sortNavigationController.tabBarItem.image = UIImage(systemName: "shuffle")
+        sortNavigationController.tabBarItem.title = "Sort"
+        sortNavigationController.navigationBar.prefersLargeTitles = false
+        
+        viewControllers = [listNavigationController, gridNavigationController, sortNavigationController]
     }
 
 
 }
-
