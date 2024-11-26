@@ -31,7 +31,9 @@ class SortViewController: UICollectionViewController {
         registerCells()
         connectDataSource()
         applySnapshot()
-        startShuffling()
+        Task {
+            await sortColors()
+        }
     }
     
     private func configureLayout() {
