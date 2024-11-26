@@ -45,11 +45,32 @@ class SortViewController: UICollectionViewController {
         configureNavigationBar()
     }
     
-    private func configureLayout() {
-        var configuration = UICollectionLayoutListConfiguration(appearance: .plain)
-        configuration.headerMode = .none
-        configuration.showsSeparators = false
-        collectionView.collectionViewLayout = UICollectionViewCompositionalLayout.list(using: configuration)
+    private func configureLayout(isGrid: Bool = false, animated: Bool = false) {
+        let layout: UICollectionViewLayout
+        if isGrid {
+            let spacing: CGFloat = 0
+            let itemsPerRow: Int = 3
+            let rowsOnScreen: Int = shuffledColors.count / itemsPerRow
+            
+            let itemSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(1 / CGFloat(itemsPerRow)), heightDimension: .fractionalHeight(1))
+            let item: NSCollectionLayoutItem = .init(layoutSize: itemSize)
+            
+            let groupSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1 / CGFloat(rowsOnScreen)))
+            let group: NSCollectionLayoutGroup = .horizontal(layoutSize: groupSize, subitems: [item])
+            group.interItemSpacing = .fixed(spacing)
+            
+            let section: NSCollectionLayoutSection = .init(group: group)
+            section.interGroupSpacing = spacing
+            section.contentInsets = NSDirectionalEdgeInsets(top: spacing, leading: spacing, bottom: spacing, trailing: spacing)
+            
+            layout = UICollectionViewCompositionalLayout(section: section)
+        } else {
+            var configuration = UICollectionLayoutListConfiguration(appearance: .plain)
+            configuration.headerMode = .none
+            configuration.showsSeparators = false
+            layout = UICollectionViewCompositionalLayout.list(using: configuration)
+        }
+        collectionView.setCollectionViewLayout(layout, animated: animated)
     }
     
     private func createShuffledColorsArray() -> [Item] {
@@ -69,12 +90,34 @@ class SortViewController: UICollectionViewController {
     // MARK: - Navigation Bar
     
     func configureNavigationBar() {
-        navigationItem.title = "Colors"
+        let segmentedControl = UISegmentedControl(items: [Layout.list.title, Layout.grid.title])
+        segmentedControl.addTarget(self, action: #selector (changeLayout), for: .valueChanged)
+        navigationItem.titleView = segmentedControl
         navigationItem.largeTitleDisplayMode = .automatic
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sort", style: .done, target: self, action: #selector (sortColors))
         navigationItem.rightBarButtonItem?.isEnabled = !isSorting
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Shuffle", style: .plain, target: self, action: #selector (shuffleColors))
+    }
+    
+    @objc func changeLayout(_ sender: UISegmentedControl) {
+        sortTask?.cancel()
+        sortTask = nil
+        if sender.selectedSegmentIndex == Layout.list.rawValue {
+            configureLayout(isGrid: false, animated: true)
+        } else {
+            configureLayout(isGrid: true, animated: true)
+        }
+    }
+    
+    enum Layout: Int {
+        case list, grid
+        var title: String {
+            switch self {
+            case .list: return "List"
+            case .grid: return "Grid"
+            }
+        }
     }
 }
