@@ -8,7 +8,11 @@ struct ColorItem: Identifiable {
     var red: Double
     var green: Double
     var blue: Double
-    var hue: CGFloat
+    var hue: CGFloat {
+        var hue: CGFloat = 0
+        color.getHue(&hue, saturation: nil, brightness: nil, alpha: nil)
+        return hue
+    }
     
     var color: UIColor {
         get {
@@ -27,13 +31,9 @@ struct ColorItem: Identifiable {
         self.red = colorComponents[0]
         self.green = colorComponents[1]
         self.blue = colorComponents[2]
-        self.hue = 0
         self.name = name
         
-        guard color.getHue(&self.hue, saturation: nil, brightness: nil, alpha: nil) else {
-            print("Couldn't get the hue for the color \(name).")
-            return
-        }
+        
     }
 }
 
@@ -69,7 +69,6 @@ extension ColorItem: Decodable {
         red = try values.decode(Double.self, forKey: .red)
         green = try values.decode(Double.self, forKey: .green)
         blue = try values.decode(Double.self, forKey: .blue)
-        hue = try values.decode(CGFloat.self, forKey: .hue)
     }
 }
 
@@ -80,7 +79,6 @@ extension ColorItem: Encodable {
         try container.encode(red, forKey: .red)
         try container.encode(green, forKey: .green)
         try container.encode(blue, forKey: .blue)
-        try container.encode(hue, forKey: .hue)
     }
 }
 

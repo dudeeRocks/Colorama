@@ -8,12 +8,14 @@ class SortViewController: UICollectionViewController {
     
     let model: Model
     
-    var timer: Timer!
     var shuffledColors: [Item] = []
     var currentIndex = 0
     
     var dataSource: DataSource!
     var cellRegistration: UICollectionView.CellRegistration<UICollectionViewListCell, Item>!
+    
+    var sortTask: Task<Void, Never>?
+    var isSorting: Bool = false
     
     init(model: Model) {
         self.model = model
@@ -27,13 +29,20 @@ class SortViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavigationBar()
         configureLayout()
         registerCells()
         connectDataSource()
         applySnapshot()
-        Task {
-            await sortColors()
-        }
+        sortColors()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        sortTask?.cancel()
+        sortTask = nil
+        shuffledColors = createShuffledColorsArray()
+        applySnapshot()
+        configureNavigationBar()
     }
     
     private func configureLayout() {
@@ -55,5 +64,17 @@ class SortViewController: UICollectionViewController {
         }
         
         return array.shuffled()
+    }
+    
+    // MARK: - Navigation Bar
+    
+    func configureNavigationBar() {
+        navigationItem.title = "Colors"
+        navigationItem.largeTitleDisplayMode = .automatic
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sort", style: .done, target: self, action: #selector (sortColors))
+        navigationItem.rightBarButtonItem?.isEnabled = !isSorting
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Shuffle", style: .plain, target: self, action: #selector (shuffleColors))
     }
 }

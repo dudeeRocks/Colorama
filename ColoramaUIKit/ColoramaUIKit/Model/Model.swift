@@ -8,16 +8,17 @@ class Model {
     private let customColorsKey: String = "customColors"
     
     let systemColors: [ColorItem] = [
-        ColorItem(color: .red, name: "Red"),
-        ColorItem(color: .orange, name: "Orange"),
-        ColorItem(color: .yellow, name: "Yellow"),
-        ColorItem(color: .green, name: "Green"),
-        ColorItem(color: .cyan, name: "Cyan"),
-        ColorItem(color: .blue, name: "Blue"),
-        ColorItem(color: .purple, name: "Purple"),
-        ColorItem(color: .brown, name: "Brown"),
-//        ColorItem(color: .label, name: "Primary Label Color"),
-//        ColorItem(color: .secondaryLabel, name: "Secondary Label Color")
+        ColorItem(color: .systemRed, name: "Red"),
+        ColorItem(color: .systemOrange, name: "Orange"),
+        ColorItem(color: .systemYellow, name: "Yellow"),
+        ColorItem(color: .systemGreen, name: "Green"),
+        ColorItem(color: .systemMint, name: "Mint"),
+        ColorItem(color: .systemTeal, name: "Teal"),
+        ColorItem(color: .systemCyan, name: "Cyan"),
+        ColorItem(color: .systemBlue, name: "Blue"),
+        ColorItem(color: .systemIndigo, name: "Indigo"),
+        ColorItem(color: .systemPurple, name: "Purple"),
+        ColorItem(color: .systemPink, name: "Pink"),
     ]
     
     // MARK: - Methods
