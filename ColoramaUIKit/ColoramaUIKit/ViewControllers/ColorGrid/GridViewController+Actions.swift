@@ -42,15 +42,15 @@ extension GridViewController: ColorGridDeleteButtonViewDelegate {
     // MARK: - Delete Color
     
     func delete(item: Item) {
-        var updatedSnapshot = dataSource.snapshot()
         model.removeColor(item.colorItem!)
-        updatedSnapshot.deleteItems([item])
-        dataSource.apply(updatedSnapshot, animatingDifferences: true)
         
         if model.customColors.isEmpty {
+            isEditing = false
             configureLayout(animated: true)
-            configureRightBarButtonItem()
         }
+        
+        configureRightBarButtonItem()
+        applySnapshot()
     }
     
     // MARK: - Toggle Edit State

@@ -32,12 +32,13 @@ extension ListViewController {
     
     func delete(item: Item) {
         model.removeColor(item.colorItem!)
-        applySnapshot(true)
         
         if model.customColors.isEmpty {
             isEditing = false
-            configureRightBarButtonItem()
         }
+        
+        configureRightBarButtonItem()
+        applySnapshot(animated: true)
     }
     
     // MARK: - Toggle Edit State

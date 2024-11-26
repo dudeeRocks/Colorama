@@ -5,7 +5,8 @@ import UIKit
 extension ListViewController: ColorDetailsDelegate {
     func didAddNewColor(item: ColorItem) {
         model.addColor(item)
-        applySnapshot(true)
+        applySnapshot(animated: true)
+        configureRightBarButtonItem()
     }
     
     func didUpdateColor(item: ColorItem) {
@@ -15,6 +16,7 @@ extension ListViewController: ColorDetailsDelegate {
     
     func didRemoveColor(item: ColorItem) {
         model.removeColor(item)
-        applySnapshot(true)
+        applySnapshot(animated: true)
+        configureRightBarButtonItem()
     }
 }

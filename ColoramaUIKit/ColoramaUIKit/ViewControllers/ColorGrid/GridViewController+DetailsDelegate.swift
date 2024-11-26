@@ -5,7 +5,8 @@ import UIKit
 extension GridViewController: ColorDetailsDelegate {
     func didAddNewColor(item: ColorItem) {
         model.addColor(item)
-        applySnapshot(true)
+        applySnapshot(animated: true)
+        configureRightBarButtonItem()
     }
     
     func didUpdateColor(item: ColorItem) {
@@ -15,7 +16,8 @@ extension GridViewController: ColorDetailsDelegate {
     
     func didRemoveColor(item: ColorItem) {
         model.removeColor(item)
-        applySnapshot(true)
+        applySnapshot(animated: true)
+        configureRightBarButtonItem()
     }
 }
 

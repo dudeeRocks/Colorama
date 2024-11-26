@@ -93,7 +93,7 @@ class GridViewController: UICollectionViewController {
             section.interGroupSpacing = spacing
             section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: spacing, bottom: spacing * 2, trailing: spacing)
             section.boundarySupplementaryItems = [sectionHeader]
-            print("returning section for \(sectionKind.title)")
+            
             return section
         }
         collectionView.setCollectionViewLayout(layout, animated: animated)

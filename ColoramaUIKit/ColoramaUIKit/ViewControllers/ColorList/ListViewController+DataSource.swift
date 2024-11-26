@@ -11,7 +11,7 @@ extension ListViewController {
         dataSource = DataSource(tableView: tableView, cellProvider: cellProvider)
     }
     
-    func applySnapshot(_ animated: Bool = false) {
+    func applySnapshot(animated: Bool = false) {
         guard dataSource != nil else { return }
         
         var snapshot = Snapshot()
