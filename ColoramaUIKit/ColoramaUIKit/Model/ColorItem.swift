@@ -49,16 +49,18 @@ extension ColorItem {
 }
 
 extension ColorItem: Hashable {
-    /// Whenever you want to use your custom type in diffable data source you must conform to `Hashable` protocol.
-    /// This can beeasily achieved by generating `UUID` for your structure and use it to create has value.
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
 }
 
+// MARK: - Codable
+// ColorItem conforms to Codable to be able to store the color data.
+
 extension ColorItem {
+    /// Coding keys for encoding and decoding of the `ColorItem` essential properties.
     enum CodingKeys: CodingKey {
-        case name, red, green, blue, hue
+        case name, red, green, blue
     }
 }
 

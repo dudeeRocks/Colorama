@@ -1,9 +1,11 @@
-//
-//  AppDelegate.swift
 //  ColoramaUIKit
+//  Simple app to showcase the use of diffable data source in UIKit.
 //
-//  Created by David Katsman on 08/10/2024.
-//
+//  Created by David Katsman on 08/10/2024 as a complimentary to the following articles:
+//  1.
+//  2.
+//  3.
+//  4. 
 
 import UIKit
 
