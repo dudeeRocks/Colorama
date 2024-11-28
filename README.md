@@ -29,3 +29,4 @@ In one of my articles that link to this project I claimed that it’s super easy
 │   └── ColoramaSwiftUI.xcodeproj
 ```
 
+![Feature image for Tables article](Images/03_workspace_organization.png)
