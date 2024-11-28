@@ -12,9 +12,9 @@ This project showcases the use of diffable data sources with table and collectio
 
 Here are the articles for which this sample project was created:
 
-|    | Link |
+|     |     |
 | --- | --- |
-| ![Feature image for Tables article](Images/02_tables.png) | How to Use Diffable Data Source with UITableView |
-| ![Feature image for Tables article](Images/02_tables.png) | How to Use Diffable Data Source with UITableView |
-| ![Feature image for Tables article](Images/02_tables.png) | How to Use Diffable Data Source with UITableView |
-| ![Feature image for Tables article](Images/02_tables.png) | How to Use Diffable Data Source with UITableView |
+| ![Feature image for Tables article](Images/02_layout.png) | How to Use Diffable Data Source with UITableView |
+| ![Feature image for Tables article](Images/02_grids.png) | How to Use Diffable Data Source with UITableView |
+| ![Feature image for Tables article](Images/02_content.png) | How to Use Diffable Data Source with UITableView |
+| ![Feature image for Tables article](Images/02_layout.png) | How to Use Diffable Data Source with UITableView |
