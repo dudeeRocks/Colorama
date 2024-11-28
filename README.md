@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="Images/01_logo.png" alt="Notes logo" width="600" />
+    <img src="Images/01_logo.png" alt="Notes logo" width="300" />
 </p>
 
 # Colorama: Sample Project
@@ -10,21 +10,11 @@ This project showcases the use of diffable data sources with table and collectio
 
 ## Articles Linked to the Project
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; text-align: center;">
-  <div>
-    <img src="image1_url" alt="Image1" style="width:100px;"><br>
-    <a href="url1">Link1</a>
-  </div>
-  <div>
-    <img src="image2_url" alt="Image2" style="width:100px;"><br>
-    <a href="url2">Link2</a>
-  </div>
-  <div>
-    <img src="image3_url" alt="Image3" style="width:100px;"><br>
-    <a href="url3">Link3</a>
-  </div>
-  <div>
-    <img src="image4_url" alt="Image4" style="width:100px;"><br>
-    <a href="url4">Link4</a>
-  </div>
-</div>
+Here are the articles for which this sample project was created:
+
+|    | Link |
+| --- | --- |
+| ![Feature image for Tables article](Images/02_tables.png) | How to Use Diffable Data Source with UITableView |
+| ![Feature image for Tables article](Images/02_tables.png) | How to Use Diffable Data Source with UITableView |
+| ![Feature image for Tables article](Images/02_tables.png) | How to Use Diffable Data Source with UITableView |
+| ![Feature image for Tables article](Images/02_tables.png) | How to Use Diffable Data Source with UITableView |
