@@ -45,3 +45,30 @@ Both Colorama projects—SwiftUI and UIKit—use largely the same architecture:
 - The entry point for both apps is the Root view.
 
 ![Colorama Architecture](Images/04_architecture.png)
+
+## Screens and Navigation 
+
+UIKit version of the app is a bit more expansive than the SwiftUI, with the latter implementation only the core of the UIKit version.
+
+![Colorama Architecture](Images/06_navigation.png)
+
+## Use of Extensions
+
+Colorama UIKit relies heavily on extensions to its types to encapsulate different parts of functionality. For example, the list view controller will have its actions and data source methods encapsulated within separate extensions. 
+
+![Colorama Architecture](Images/05_extensions.png)
+
+This is meant to ensure maintainability and ease of navigation within the project.
+
+---
+
+This project was made for the demonstration and education purposes, so feel free to use the code from this project however you want. Let me know if you found this stuff useful/helpful/cool/nice/meh. 😉
+ 
+---
+ 
+<p align="center">
+    <img src="Images/07_dudee_logo.png" alt="DUDEE logo" width="200" />
+    <p align="center">Made by <a href="https://www.dudee.rocks">DUDEE.rocks</a></p>
+</p>
+
+
