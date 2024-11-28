@@ -14,10 +14,10 @@ Here are the articles for which this sample project was created:
 
 |     |     |
 | --- | --- |
-| ![Feature image for Tables article](Images/02_grids.png) | How to Use Diffable Data Source in UIKit |
-| ![Feature image for Tables article](Images/02_tables.png) | How to Use Diffable Data Source with UITableView |
-| ![Feature image for Tables article](Images/02_content.png) | How to Use UIContentView in UIKit |
-| ![Feature image for Tables article](Images/02_layout.png) | How to Create Grid Layout in UIKit |
+| ![Feature image for Tables article](Images/02_grids.png) | [How to Use Diffable Data Source in UIKit](https://dudee.rocks/2024/11/28/how-to-use-diffable-data-source-in-uikit/) |
+| ![Feature image for Tables article](Images/02_tables.png) | [How to Use Diffable Data Source with UITableView](https://dudee.rocks/2024/11/28/how-to-use-diffable-data-source-with-uitableview/) |
+| ![Feature image for Tables article](Images/02_content.png) | [How to Use UIContentView in UIKit](https://dudee.rocks/2024/11/28/how-to-use-uicontentview-in-uikit/) |
+| ![Feature image for Tables article](Images/02_layout.png) | [How to Create Grid Layout in UIKit](https://dudee.rocks/2024/11/28/how-to-create-grid-layout-in-uikit/) |
 
 ## UIKit VS SwiftUI
 
